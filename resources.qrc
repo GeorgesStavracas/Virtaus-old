@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/virtaus/images">
+        <file>resources/icon.png</file>
+        <file>resources/icon.svg</file>
+        <file>resources/favicon.ico</file>
+    </qresource>
+</RCC>
