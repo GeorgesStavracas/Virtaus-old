@@ -1,4 +1,4 @@
-TARGET = virtaus
+TARGET = Virtaus
 TEMPLATE = app
 
 QT += core gui
