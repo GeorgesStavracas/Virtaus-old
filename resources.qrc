@@ -3,5 +3,6 @@
         <file>resources/icon.png</file>
         <file>resources/icon.svg</file>
         <file>resources/favicon.ico</file>
+        <file>resources/no_thumbnail.svg</file>
     </qresource>
 </RCC>

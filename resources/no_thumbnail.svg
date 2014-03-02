@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r"
-   sodipodi:docname="Novo documento 1">
+   sodipodi:docname="no_thumbnail.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="9.1734096"
-     inkscape:cy="28.938309"
+     inkscape:zoom="3.959798"
+     inkscape:cx="21.666852"
+     inkscape:cy="50.029595"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -52,11 +52,18 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-924.36218)">
+    <rect
+       style="fill:none;stroke:#d2d2d2;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-linejoin:round"
+       id="rect3782"
+       width="114.59274"
+       height="114.59274"
+       x="6.7036328"
+       y="931.0658"
+       ry="2.3691649" />
     <path
        id="path2992"
-       transform="translate(0,924.36218)"
-       style="fill:#4b4b4b;fill-opacity:1;stroke:none"
-       d="M 23.855881,93.106409 92.934034,23.893011 105.62222,36.193414 37.005811,105.88124 z M 16,63.999994 C 16,90.280475 36.868666,112 64,112 90.280482,112 112,90.280475 112,63.999994 112,37.719513 90.280482,16 64,16 38.257626,16 16,37.719513 16,63.999994 z m 112,-3e-6 C 128,99.346212 99.346222,127.99999 64,127.99999 28.653776,127.99999 2.4550054e-8,99.346212 2.4550054e-8,63.999991 2.4550054e-8,28.653768 28.653776,-8.8364798e-6 64,-8.8364798e-6 99.346222,-8.8364798e-6 128,28.653768 128,63.999991 z"
+       style="fill:#c8c8c8;fill-opacity:1;stroke:none"
+       d="M 40.434618,1009.3625 84.772916,964.43977 89.44321,969.26124 44.744618,1014.21 z M 33,988.36217 c 0,15.42713 15.073377,31.00003 31,31.00003 15.427157,0 31,-15.5729 31,-31.00003 0,-15.42715 -15.572843,-30.99999 -31,-30.99999 -15.111276,0 -31,15.57284 -31,30.99999 z m 68.5,0 c 0,20.74893 -16.751076,37.50003 -37.5,37.50003 -20.748924,0 -37.5,-16.7511 -37.5,-37.50003 0,-20.74893 16.751076,-37.49999 37.5,-37.49999 20.748924,0 37.5,16.75106 37.5,37.49999 z"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccssssssssss" />
   </g>
