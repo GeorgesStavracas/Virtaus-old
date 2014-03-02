@@ -21,7 +21,7 @@ public:
         bool isValidPath (const QString& path);
 
         QString* getDir ();
-        QLinkedList<Virtaus::Collection>* loadData();
+        QList<Virtaus::Collection>* loadData();
 
 
 protected:
@@ -29,6 +29,7 @@ protected:
 
         Virtaus::Collection* loadCollection (const QString& path);
         Virtaus::Category* loadCategory (const QString& path);
+        bool isValidCategory (const QString& path);
 
 };
 
