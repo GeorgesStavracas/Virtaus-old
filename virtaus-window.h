@@ -8,6 +8,7 @@
 #include "collection-view.h"
 #include "core/data-reader.h"
 #include "dialogs/preferences-dialog.h"
+#include "collection-view.h"
 #include "new-collection-wizard.h"
 
 namespace Ui {
@@ -29,9 +30,6 @@ private slots:
 
 private:
     Ui::VirtausWindow *ui;
-    CollectionView *collection_view;
-    PreferencesDialog *dialog;
-    AboutDialog *about;
 };
 
 #endif // VIRTAUSWINDOW_H

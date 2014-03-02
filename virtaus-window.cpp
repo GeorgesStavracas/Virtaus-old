@@ -8,17 +8,10 @@ VirtausWindow::VirtausWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    collection_view = new CollectionView();
-
-    ui->horizontalLayout->addWidget(this->collection_view);
-
-
-    this->dialog = new PreferencesDialog(this);
-    this->about = new AboutDialog(this);
-
     Virtaus::DataReader *reader = new Virtaus::DataReader;
-    QLinkedList<Virtaus::Collection> *list = reader->loadData();
+    QList<Virtaus::Collection> *list = reader->loadData();
 
+    ui->collectionView->setCollectionList(list);
 }
 
 VirtausWindow::~VirtausWindow()
@@ -28,7 +21,16 @@ VirtausWindow::~VirtausWindow()
 
 void
 VirtausWindow::show_about() {
-    this->about->show();
+    AboutDialog *about = new AboutDialog();
+    about->deleteLater();
+    about->exec();
+}
+
+void
+VirtausWindow::show_preferences() {
+    PreferencesDialog *dialog = new PreferencesDialog();
+    dialog->deleteLater();
+    dialog->exec();
 }
 
 void
@@ -39,10 +41,7 @@ VirtausWindow::new_collection_wizard() {
     wizard->setWizardStyle(QWizard::WizardStyle::MacStyle);
 #endif
 
-    wizard->show();
+    wizard->deleteLater();
+    wizard->exec();
 }
 
-void
-VirtausWindow::show_preferences() {
-    this->dialog->show();
-}
