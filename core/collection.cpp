@@ -8,8 +8,7 @@ using namespace Virtaus;
 
 Collection::Collection() {
     this->info = new QMap<QString, QString>;
-    this->categories = new QList<Virtaus::Category>;
-    this->products = new QList<Virtaus::Product>;
+    this->categories = new QLinkedList<QString>;
 }
 
 QString
@@ -20,14 +19,9 @@ Collection::getInfo (QString field) {
     return this->info->value(field);
 }
 
-QList<Virtaus::Category>*
+QLinkedList<QString>*
 Collection::getCategories() {
     return this->categories;
-}
-
-QList<Virtaus::Product>*
-Collection::getProducts() {
-    return this->products;
 }
 
 void

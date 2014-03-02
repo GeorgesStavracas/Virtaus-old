@@ -22,15 +22,13 @@ public:
     Collection();
 
     QString getInfo (QString field = "");
-    QList<Virtaus::Category>* getCategories();
-    QList<Virtaus::Product>* getProducts();
 
     void setInfo (QString key, QString value);
-    QImage* thumbnail;
+    QLinkedList<QString>* getCategories();
+    QString* thumbnail;
 private:
     QMap<QString, QString> *info;
-    QList<Virtaus::Category> *categories;
-    QList<Virtaus::Product> *products;
+    QLinkedList<QString> *categories;
 };
 
 
