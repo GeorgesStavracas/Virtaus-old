@@ -22,11 +22,8 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QFrame" name="frame">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+     <property name="lineWidth">
+      <number>0</number>
      </property>
      <layout class="QFormLayout" name="formLayout">
       <property name="labelAlignment">
@@ -87,6 +84,9 @@
         </property>
         <property name="text">
          <string>A collection with this title already exists in the directory. Choose a new title.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
