@@ -18,13 +18,13 @@
 }
 
 CollectionView QListView::item:hover {
-	background-color: rgb(85, 85, 85);
-	border: 1px solid rgb(24, 24, 24);
+	background-color: rgb(100, 100, 100);
+	border-radius: 3px;
 }
 
 CollectionView QListView::item:selected {
 	background-color: rgb(85, 85, 85);
-	border: 1px solid rgb(24, 24, 24);
+	border-radius: 3px;
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -42,8 +42,19 @@ CollectionView QListView::item:selected {
    </property>
    <item row="0" column="0">
     <widget class="QListView" name="listView">
+     <property name="styleSheet">
+      <string notr="true">QListView {
+	padding: 10px 10px 10px 10px;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
      <property name="editTriggers">
-      <set>QAbstractItemView::DoubleClicked</set>
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="tabKeyNavigation">
+      <bool>true</bool>
      </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::SingleSelection</enum>

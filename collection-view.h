@@ -2,6 +2,8 @@
 #define COLLECTIONVIEW_H
 
 #include <QWidget>
+#include <QStandardItem>
+#include "core/collection.h"
 
 namespace Ui {
 class CollectionView;
@@ -14,6 +16,8 @@ class CollectionView : public QWidget
 public:
     explicit CollectionView(QWidget *parent = 0);
     ~CollectionView();
+
+    void setCollectionList (const QList<Virtaus::Collection>* list);
 
 private:
     Ui::CollectionView *ui;

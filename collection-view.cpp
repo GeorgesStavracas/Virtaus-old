@@ -20,3 +20,24 @@ CollectionView::~CollectionView()
 {
     delete ui;
 }
+
+/*
+ * Setup the collection model.
+ */
+void
+CollectionView::setCollectionList (const QList<Virtaus::Collection>* list) {
+    if (!list) return;
+
+    QStandardItemModel *model = new QStandardItemModel;
+
+    foreach (Virtaus::Collection collection, *list) {
+
+        QIcon *icon = new QIcon (*collection.thumbnail);
+
+        QStandardItem *item = new QStandardItem(*icon, collection.getInfo("name"));
+
+        model->appendRow(item);
+    }
+
+    ui->listView->setModel(model);
+}
