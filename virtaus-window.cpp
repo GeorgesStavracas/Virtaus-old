@@ -21,14 +21,19 @@ VirtausWindow::~VirtausWindow()
 
 void
 VirtausWindow::show_about() {
-    AboutDialog *about = new AboutDialog();
+    AboutDialog *about = new AboutDialog(this);
     about->deleteLater();
     about->exec();
 }
 
 void
 VirtausWindow::show_preferences() {
-    PreferencesDialog *dialog = new PreferencesDialog();
+    PreferencesDialog *dialog = new PreferencesDialog(this);
+
+#ifdef Q_OS_WIN
+    dialog->setStyleSheet("QDialog {\n	background-color: rgb(255, 255, 255);\n}");
+#endif
+
     dialog->deleteLater();
     dialog->exec();
 }
