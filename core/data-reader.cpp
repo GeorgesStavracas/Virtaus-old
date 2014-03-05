@@ -251,13 +251,14 @@ DataReader::loadCollection (const QString& path) {
 
                     token = xml.readNext();
 
-                    if (token == QXmlStreamReader::StartDocument &&
-                            xml.name() == "categiry")
+                    if (token == QXmlStreamReader::StartElement &&
+                            xml.name() == "category")
                     {
                         QXmlStreamAttributes attribs = xml.attributes();
 
                         if (attribs.hasAttribute("name"))
                             collection->getCategories()->append(attribs.value("name").toString());
+
 
                     }
 
@@ -349,15 +350,7 @@ DataReader::loadCategory (const QString& path) {
                 /* Load the item with the category 'c' as parent */
                 if (attribs.hasAttribute("name")) {
 
-                    Virtaus::Item* item = new Virtaus::Item(c);
-
-                    QFileInfo *info = new QFileInfo(path + "/" + attribs.value("name").toString());
-
-                    item->setName(info->baseName());
-                    item->setImage(path + "/" + attribs.value("name").toString());
-                    c->addItem(item);
-
-                    delete info;
+                    c->getItemList()->append(attribs.value("name").toString());
                 }
 
             }
