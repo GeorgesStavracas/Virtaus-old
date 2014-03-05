@@ -23,13 +23,12 @@ public:
         QString* getDir ();
         QList<Virtaus::Collection>* loadData();
 
-
-protected:
-        QString* dir;
-
         Virtaus::Collection* loadCollection (const QString& path);
         Virtaus::Category* loadCategory (const QString& path);
         bool isValidCategory (const QString& path);
+
+protected:
+        QString* dir;
 
 };
 

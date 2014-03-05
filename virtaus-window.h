@@ -27,6 +27,8 @@ private slots:
     void show_about();
     void new_collection_wizard();
     void show_preferences();
+    void show_home();
+    void show_collection(Virtaus::Collection collection);
 
 private:
     Ui::VirtausWindow *ui;

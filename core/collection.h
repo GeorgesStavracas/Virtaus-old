@@ -40,22 +40,20 @@ public:
     QString* getName();
     QPoint* getPoint();
     QSize* getSize();
-    QList<Virtaus::Item>* getItemList();
-    const Virtaus::Collection* getParent();
+    QList<QString>* getItemList();
+    Virtaus::Collection* getParent();
 
-    void setParent (const Virtaus::Collection* parent);
+    void setParent (Virtaus::Collection* parent);
     void setName (const QString name);
     void setPoint (QPoint* point);
     void setSize (QSize* size);
-
-    void addItem (Virtaus::Item* item);
 
 protected:
     QString* name;
     QPoint* point;
     QSize* size;
-    const Virtaus::Collection* parent;
-    QList<Virtaus::Item>* itemlist;
+    Virtaus::Collection* parent;
+    QList<QString>* itemlist;
 };
 
 class Virtaus::Item

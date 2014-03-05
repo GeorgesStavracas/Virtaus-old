@@ -4,5 +4,19 @@
         <file>resources/icon.svg</file>
         <file>resources/favicon.ico</file>
         <file>resources/no_thumbnail.svg</file>
+        <file>resources/preferences.png</file>
+        <file>resources/preferences.svg</file>
+        <file>resources/grid.png</file>
+        <file>resources/grid.svg</file>
+        <file>resources/buttons/half_button_hover_left.png</file>
+        <file>resources/buttons/half_button_hover_right.png</file>
+        <file>resources/buttons/half_button_left.png</file>
+        <file>resources/buttons/half_button_pressed_left.png</file>
+        <file>resources/buttons/half_button_pressed_right.png</file>
+        <file>resources/buttons/half_button_right.png</file>
+        <file>resources/info.png</file>
+        <file>resources/info.svg</file>
+        <file>resources/add.png</file>
+        <file>resources/add.svg</file>
     </qresource>
 </RCC>

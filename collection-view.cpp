@@ -1,6 +1,7 @@
 #include <QFileSystemModel>
 #include "collection-view.h"
 #include "ui_collection-view.h"
+#include <iostream>
 
 CollectionView::CollectionView(QWidget *parent) :
     QWidget(parent),
@@ -8,12 +9,7 @@ CollectionView::CollectionView(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    /* Test with filesystem */
-    QFileSystemModel *model = new QFileSystemModel;
-    model->setRootPath(QDir::currentPath());
-
-
-    ui->listView->setModel(model);
+    this->collections = NULL;
 }
 
 CollectionView::~CollectionView()
@@ -25,8 +21,10 @@ CollectionView::~CollectionView()
  * Setup the collection model.
  */
 void
-CollectionView::setCollectionList (const QList<Virtaus::Collection>* list) {
+CollectionView::setCollectionList (QList<Virtaus::Collection>* list) {
     if (!list) return;
+
+    this->collections = list;
 
     QStandardItemModel *model = new QStandardItemModel;
 
@@ -40,4 +38,19 @@ CollectionView::setCollectionList (const QList<Virtaus::Collection>* list) {
     }
 
     ui->listView->setModel(model);
+}
+
+void
+CollectionView::item_selected(QModelIndex index) {
+    if (!index.isValid()) return;
+
+    /*
+     * Since we're using QListView, it's sure that
+     * the index.column() == 0 always. So we should
+     * simply use index.row().
+     */
+    Virtaus::Collection collection = this->collections->at(index.row());
+    emit collectionSelected(collection);
+
+
 }

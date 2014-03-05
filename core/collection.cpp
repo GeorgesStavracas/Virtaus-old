@@ -38,7 +38,7 @@ Category::Category() {
     this->name = new QString ("");
     this->point = new QPoint(0, 0);
     this->size = new QSize(0, 0);
-    this->itemlist = new QList<Virtaus::Item>;
+    this->itemlist = new QList<QString>;
 }
 
 /*
@@ -59,18 +59,18 @@ Category::getSize () {
     return new QSize (this->size->rwidth(), this->size->rheight());
 }
 
-const Virtaus::Collection*
+Virtaus::Collection*
 Category::getParent() {
     return this->parent;
 }
 
-QList<Virtaus::Item>*
+QList<QString>*
 Category::getItemList() {
     return this->itemlist;
 }
 
 void
-Category::setParent (const Virtaus::Collection* parent) {
+Category::setParent (Virtaus::Collection* parent) {
     this->parent = parent;
 }
 
@@ -91,11 +91,6 @@ void
 Category::setSize (QSize *size) {
     this->size->setWidth(size->width());
     this->size->setHeight(size->height());
-}
-
-void
-Category::addItem (Item *item) {
-    this->itemlist->append(*item);
 }
 
 

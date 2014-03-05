@@ -14,7 +14,6 @@
    <string notr="true">CollectionView QListView {
 	color: rgb(238, 238, 238);
 	background-color: rgb(53, 53, 55);
-    show-decoration-selected: 1; 
 }
 
 CollectionView QListView::item:hover {
@@ -50,6 +49,9 @@ CollectionView QListView::item:selected {
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
@@ -57,7 +59,7 @@ CollectionView QListView::item:selected {
       <bool>true</bool>
      </property>
      <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
+      <enum>QAbstractItemView::NoSelection</enum>
      </property>
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectItems</enum>
@@ -70,9 +72,6 @@ CollectionView QListView::item:selected {
      </property>
      <property name="movement">
       <enum>QListView::Static</enum>
-     </property>
-     <property name="isWrapping" stdset="0">
-      <bool>false</bool>
      </property>
      <property name="resizeMode">
       <enum>QListView::Adjust</enum>
@@ -100,5 +99,42 @@ CollectionView QListView::item:selected {
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>listView</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>CollectionView</receiver>
+   <slot>item_selected(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>listView</sender>
+   <signal>entered(QModelIndex)</signal>
+   <receiver>CollectionView</receiver>
+   <slot>item_selected(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>collectionSelected(Virtaus::Collection)</signal>
+  <slot>item_selected(QModelIndex)</slot>
+ </slots>
 </ui>

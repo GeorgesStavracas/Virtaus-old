@@ -50,7 +50,7 @@
      <number>0</number>
     </property>
     <item row="0" column="0">
-     <widget class="QStackedWidget" name="stack">
+     <widget class="AnimatedStackedWidget" name="mainStack">
       <widget class="QWidget" name="collectionPage">
        <layout class="QGridLayout" name="gridLayout_2">
         <property name="leftMargin">
@@ -70,6 +70,28 @@
         </property>
         <item row="0" column="0">
          <widget class="CollectionView" name="collectionView" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="collectionData">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="ProductView" name="productView" native="true"/>
         </item>
        </layout>
       </widget>
@@ -109,7 +131,14 @@
     </property>
     <addaction name="actionPrefer_ncias"/>
    </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionCollections"/>
+   </widget>
    <addaction name="menuArquivo"/>
+   <addaction name="menuView"/>
    <addaction name="menuFerramentas"/>
    <addaction name="menuSobre"/>
   </widget>
@@ -142,13 +171,30 @@
     <string>&amp;Preferences</string>
    </property>
   </action>
+  <action name="actionCollections">
+   <property name="text">
+    <string>&amp;Collections</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>CollectionView</class>
    <extends>QWidget</extends>
-   <header location="global">collection-view.h</header>
+   <header>collection-view.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AnimatedStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>animated-stacked-widget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ProductView</class>
+   <extends>QWidget</extends>
+   <header>diagram/product-view.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
@@ -161,6 +207,22 @@
    <signal>triggered()</signal>
    <receiver>VirtausWindow</receiver>
    <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>collectionView</sender>
+   <signal>collectionSelected(Virtaus::Collection)</signal>
+   <receiver>VirtausWindow</receiver>
+   <slot>show_collection(Virtaus::Collection)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -220,10 +282,28 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionCollections</sender>
+   <signal>triggered()</signal>
+   <receiver>VirtausWindow</receiver>
+   <slot>show_home()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>show_about()</slot>
   <slot>new_collection_wizard()</slot>
   <slot>show_preferences()</slot>
+  <slot>show_collection(Virtaus::Collection)</slot>
+  <slot>show_home()</slot>
  </slots>
 </ui>
