@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProductView</class>
+ <widget class="QWidget" name="ProductView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>569</width>
+    <height>376</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="AnimatedStackedWidget" name="stackedWidget">
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="dataPage">
+      <layout class="QGridLayout" name="gridLayout_5">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QWidget" name="widget_4" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(53, 53, 55);</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/virtaus/images/resources/no_thumbnail.svg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="productListButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>52</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#productListButton {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_left.png);
+	text-align: right;
+	padding-right: 5px;
+}
+
+#productListButton:hover {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_hover_left.png);
+	text-align: right;
+	padding-right: 5px;
+}
+
+#productListButton:pressed {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_pressed_left.png);
+	text-align: right;
+	padding-right: 5px;
+}</string>
+            </property>
+            <property name="text">
+             <string>&gt;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="listPage">
+      <layout class="QGridLayout" name="gridLayout_4">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="AnimatedStackedWidget" name="productsStack">
+         <widget class="QWidget" name="page">
+          <layout class="QGridLayout" name="gridLayout_7">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QWidget" name="widget" native="true">
+             <property name="styleSheet">
+              <string notr="true">QWidget {
+	background-color:  rgb(53, 53, 55);
+}</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item row="0" column="0">
+               <widget class="QPushButton" name="collectionDataButton">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>52</width>
+                  <height>100</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#collectionDataButton {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_right.png);
+	text-align: left;
+	padding-left: 5px;
+}
+
+#collectionDataButton:hover {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_hover_right.png);
+	text-align: left;
+	padding-left: 5px;
+}
+
+#collectionDataButton:pressed {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_pressed_right.png);
+	text-align: left;
+	padding-left: 5px;
+}</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../resources.qrc">
+                  <normaloff>:/virtaus/images/resources/info.svg</normaloff>:/virtaus/images/resources/info.svg</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>24</width>
+                  <height>24</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QWidget" name="widget_3" native="true"/>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="diagramViewButton">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>52</width>
+                  <height>100</height>
+                 </size>
+                </property>
+                <property name="statusTip">
+                 <string>View diagram</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">#diagramViewButton {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_left.png);
+	text-align: right;
+	padding-right: 5px;
+}
+
+#diagramViewButton:hover {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_hover_left.png);
+	text-align: right;
+	padding-right: 5px;
+}
+
+#diagramViewButton:pressed {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_pressed_left.png);
+	text-align: right;
+	padding-right: 5px;
+}</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../resources.qrc">
+                  <normaloff>:/virtaus/images/resources/grid.svg</normaloff>:/virtaus/images/resources/grid.svg</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>24</width>
+                  <height>24</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_2"/>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="diagramPage">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="horizontalSpacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="1">
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="styleSheet">
+          <string notr="true">background-color:  rgb(53, 53, 55);</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignHCenter|Qt::AlignTop</set>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>510</width>
+            <height>376</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="DiagramView" name="diagramView" native="true"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QWidget" name="widget_2" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color:  rgb(53, 53, 55);</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="productListButton2">
+            <property name="minimumSize">
+             <size>
+              <width>54</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#productListButton2 {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_right.png);
+	text-align: left;
+	padding-left: 5px;
+}
+
+#productListButton2:hover {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_hover_right.png);
+	text-align: left;
+	padding-left: 5px;
+}
+
+#productListButton2:pressed {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_pressed_right.png);
+	text-align: left;
+	padding-left: 5px;
+}</string>
+            </property>
+            <property name="text">
+             <string>&lt;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AnimatedStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>animated-stacked-widget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>DiagramView</class>
+   <extends>QWidget</extends>
+   <header>diagram/diagram-view.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>diagramViewButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ProductView</receiver>
+   <slot>show_diagram_view()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>542</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>collectionDataButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ProductView</receiver>
+   <slot>show_info_view()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>25</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>productListButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ProductView</receiver>
+   <slot>show_product_view()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>542</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>productListButton2</sender>
+   <signal>clicked()</signal>
+   <receiver>ProductView</receiver>
+   <slot>show_product_view()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>26</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>show_diagram_view()</slot>
+  <slot>show_info_view()</slot>
+  <slot>show_product_view()</slot>
+ </slots>
+</ui>
