@@ -30,7 +30,9 @@ Attribute::getParent() {
 
 QString&
 Attribute::getPath() {
-    return *(new QString(*this->name));
+    QString *path = new QString(this->parent->getPath());
+    path->append("/" + *this->name);
+    return *path;
 }
 
 int
@@ -187,6 +189,13 @@ Item::getImage() {
 QString*
 Item::getName() {
     return new QString (*(this->name));
+}
+
+QString&
+Item::getPath() {
+    QString* path = new QString(this->parent->getPath());
+    path->append(this->name);
+    return *path;
 }
 
 void

@@ -90,6 +90,7 @@ public:
     QImage* getImage();
     QString* getName();
     Virtaus::Category* getParent();
+    QString& getPath();
 
     void setImage (const QString& path);
     void setName (const QString& name);
@@ -97,7 +98,7 @@ public:
 protected:
     QString* name;
     QImage* image;
-    const Virtaus::Category* parent;
+    Virtaus::Category* parent;
 };
 
 class Virtaus::Product
