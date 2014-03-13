@@ -49,7 +49,9 @@ public:
     QPoint* getPoint();
     QSize* getSize();
     QList<Virtaus::Attribute>* getAttributeList();
+    QList<Virtaus::Product>* getProductList();
     Virtaus::Collection* getParent();
+    QString& getPath();
 
     void setParent (Virtaus::Collection* parent);
     void setName (const QString name);
@@ -62,6 +64,7 @@ protected:
     QSize* size;
     Virtaus::Collection* parent;
     QList<Virtaus::Attribute>* attribs;
+    QList<Virtaus::Product>* products;
 };
 
 class Virtaus::Collection
@@ -117,17 +120,18 @@ private:
 class Virtaus::Set
 {
 public:
-    explicit Set (const Virtaus::Collection *parent);
+    explicit Set (Virtaus::Collection *parent);
 
     QString* getName();
     QList<Virtaus::Product>* getProductList();
+    Virtaus::Collection* getParent();
 
     void setName (const QString& name);
 
-private:
+protected:
     QString* name;
-    QList<Virtaus::Product*> products;
-    const Virtaus::Collection* parent;
+    QList<Virtaus::Product>* products;
+    Virtaus::Collection* parent;
 };
 
 #endif // COLLECTION_H
