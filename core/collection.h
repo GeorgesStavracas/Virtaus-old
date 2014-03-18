@@ -2,9 +2,10 @@
 #define COLLECTION_H
 
 #include <QMap>
+#include <QString>
 #include <QtCore>
 #include <QtGui>
-#include <QString>
+#include <QObject>
 
 namespace Virtaus {
     class Attribute;
@@ -19,41 +20,43 @@ namespace Virtaus {
  * Class definitions
  */
 
-class Virtaus::Attribute {
+class Virtaus::Attribute : public QObject
+{
+
+    Q_OBJECT
+
 public:
-    explicit Attribute();
+    explicit Attribute(Virtaus::Category* parent);
 
     QString* getName();
-    QList<Virtaus::Item>* getItemList();
+    QList<Virtaus::Item*>* getItemList();
     Virtaus::Category* getParent();
     QString& getPath();
     int getZIndex();
 
     void setName(QString& name);
-    void setParent(Category* parent);
     void setZIndex (int index);
 
 protected:
     QString* name;
-    QList<Virtaus::Item>* itemlist;
+    QList<Virtaus::Item*>* itemlist;
     Virtaus::Category* parent;
     int z_index;
 };
 
-class Virtaus::Category
+class Virtaus::Category : public QObject
 {
 public:
-    explicit Category();
+    explicit Category(Virtaus::Collection* parent);
 
     QString* getName();
     QPoint* getPoint();
     QSize* getSize();
-    QList<Virtaus::Attribute>* getAttributeList();
-    QList<Virtaus::Product>* getProductList();
+    QList<Virtaus::Attribute*>* getAttributeList();
+    QList<Virtaus::Product*>* getProductList();
     Virtaus::Collection* getParent();
     QString& getPath();
 
-    void setParent (Virtaus::Collection* parent);
     void setName (const QString name);
     void setPoint (QPoint* point);
     void setSize (QSize* size);
@@ -63,11 +66,11 @@ protected:
     QPoint* point;
     QSize* size;
     Virtaus::Collection* parent;
-    QList<Virtaus::Attribute>* attribs;
-    QList<Virtaus::Product>* products;
+    QList<Virtaus::Attribute*>* attribs;
+    QList<Virtaus::Product*>* products;
 };
 
-class Virtaus::Collection
+class Virtaus::Collection : public QObject
 {
 public:
     Collection();
@@ -75,14 +78,14 @@ public:
     QString getInfo (QString field = "");
 
     void setInfo (QString key, QString value);
-    QLinkedList<Virtaus::Category>* getCategories();
+    QLinkedList<Virtaus::Category*>* getCategories();
     QString* thumbnail;
 private:
     QMap<QString, QString> *info;
-    QLinkedList<Virtaus::Category> *categories;
+    QLinkedList<Virtaus::Category*> *categories;
 };
 
-class Virtaus::Item
+class Virtaus::Item : public QObject
 {
 public:
     Item(Virtaus::Category* parent);
@@ -101,37 +104,37 @@ protected:
     Virtaus::Category* parent;
 };
 
-class Virtaus::Product
+class Virtaus::Product : public QObject
 {
 public:
     Product(const Virtaus::Collection *parent);
 
     QString* getName();
-    QList<Virtaus::Item>* getItemList();
+    QList<Virtaus::Item*>* getItemList();
     const Virtaus::Collection* getParent();
 
     void setName (const QString& name);
 
 private:
     QString *name;
-    QList<Virtaus::Item> *items;
+    QList<Virtaus::Item*> *items;
     const Virtaus::Collection* parent;
 };
 
-class Virtaus::Set
+class Virtaus::Set : public QObject
 {
 public:
     explicit Set (Virtaus::Collection *parent);
 
     QString* getName();
-    QList<Virtaus::Product>* getProductList();
+    QList<Virtaus::Product*>* getProductList();
     Virtaus::Collection* getParent();
 
     void setName (const QString& name);
 
 protected:
     QString* name;
-    QList<Virtaus::Product>* products;
+    QList<Virtaus::Product*>* products;
     Virtaus::Collection* parent;
 };
 

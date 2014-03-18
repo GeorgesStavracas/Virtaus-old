@@ -7,13 +7,13 @@ using namespace Virtaus;
 /*
  * Attribute class
  */
-Attribute::Attribute() {
-    this->itemlist = new QList<Virtaus::Item>;
+Attribute::Attribute(Virtaus::Category* parent) : QObject(parent) {
+    this->itemlist = new QList<Virtaus::Item*>;
     this->name = new QString("");
     this->z_index = 0;
 }
 
-QList<Virtaus::Item>*
+QList<Virtaus::Item*>*
 Attribute::getItemList() {
     return this->itemlist;
 }
@@ -47,11 +47,6 @@ Attribute::setName(QString &name) {
 }
 
 void
-Attribute::setParent(Category *parent) {
-    this->parent = parent;
-}
-
-void
 Attribute::setZIndex(int index) {
     this->z_index = index;
 }
@@ -65,12 +60,13 @@ Attribute::setZIndex(int index) {
  * Category class
  */
 
-Category::Category() {
+Category::Category(Virtaus::Collection *parent) {
     this->name = new QString ("");
     this->point = new QPoint(0, 0);
     this->size = new QSize(0, 0);
-    this->attribs = new QList<Virtaus::Attribute>;
-    this->products = new QList<Virtaus::Product>;
+    this->attribs = new QList<Virtaus::Attribute*>;
+    this->products = new QList<Virtaus::Product*>;
+    this->parent = parent;
 }
 
 QString*
@@ -101,19 +97,14 @@ Category::getParent() {
     return this->parent;
 }
 
-QList<Virtaus::Attribute>*
+QList<Virtaus::Attribute*>*
 Category::getAttributeList() {
     return this->attribs;
 }
 
-QList<Virtaus::Product>*
+QList<Virtaus::Product*>*
 Category::getProductList() {
     return this->products;
-}
-
-void
-Category::setParent (Virtaus::Collection* parent) {
-    this->parent = parent;
 }
 
 void
@@ -145,9 +136,9 @@ Category::setSize (QSize *size) {
  * Collection class
  */
 
-Collection::Collection() {
+Collection::Collection() : QObject() {
     this->info = new QMap<QString, QString>;
-    this->categories = new QLinkedList<Virtaus::Category>;
+    this->categories = new QLinkedList<Virtaus::Category*>;
 }
 
 QString
@@ -158,7 +149,7 @@ Collection::getInfo (QString field) {
     return this->info->value(field);
 }
 
-QLinkedList<Virtaus::Category>*
+QLinkedList<Virtaus::Category*>*
 Collection::getCategories() {
     return this->categories;
 }
@@ -222,7 +213,7 @@ Item::setName (const QString &name) {
  */
 Product::Product (const Collection *parent) {
     this->parent = parent;
-    this->items = new QList<Virtaus::Item>;
+    this->items = new QList<Virtaus::Item*>;
     this->name = new QString;
 }
 
@@ -231,7 +222,7 @@ Product::getName() {
     return new QString(*this->name);
 }
 
-QList<Virtaus::Item>*
+QList<Virtaus::Item*>*
 Product::getItemList() {
     return this->items;
 }
@@ -258,7 +249,7 @@ Product::setName (const QString &name) {
  */
 Set::Set (Virtaus::Collection *parent) {
     this->parent = parent;
-    this->products = new QList<Virtaus::Product>();
+    this->products = new QList<Virtaus::Product*>;
     this->name = new QString;
 }
 
@@ -267,7 +258,7 @@ Set::getName() {
     return new QString(*this->name);
 }
 
-QList<Virtaus::Product>*
+QList<Virtaus::Product*>*
 Set::getProductList() {
     return this->products;
 }
