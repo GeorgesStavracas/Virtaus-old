@@ -11,24 +11,36 @@ namespace Virtaus {
     class DataReader;
 }
 
-class Virtaus::DataReader
+class Virtaus::DataReader :
+        public QObject
 {
+
+    Q_OBJECT
 
 public:
         DataReader();
 
         void setDir (const QString& dir);
-        bool isValidPath (const QString& path);
 
         QString* getDir ();
-        QList<Virtaus::Collection>* loadData();
+        QList<Virtaus::Collection*>* loadData();
 
-        Virtaus::Collection* loadCollection (const QString& path);
-        Virtaus::Category* loadCategory (const QString& path);
-        bool isValidCategory (const QString& path);
+        /* Validating methods */
+        bool validateAttribute(const QString& path);
+        bool validateCategory(const QString& path);
+        bool validateCollection(const QString& path);
+
+        /* Auxiliary methods */
+        bool hasItem (const QString& path, const QString& item);
+        bool hasProduct (const QString& path, const QString& product);
 
 protected:
         QString* dir;
+
+        /* Loading methods */
+        Virtaus::Attribute* loadAttribute (const QString& path, Virtaus::Category* parent);
+        Virtaus::Category* loadCategory (const QString& path, Virtaus::Collection* parent);
+        Virtaus::Collection* loadCollection (const QString& path);
 
 };
 
