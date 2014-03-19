@@ -27,6 +27,7 @@ class Virtaus::Attribute : public QObject
 
 public:
     explicit Attribute(Virtaus::Category* parent);
+    ~Attribute();
 
     QString* getName();
     QMap<QString, Virtaus::Item*>* getItemList();
@@ -48,6 +49,7 @@ class Virtaus::Category : public QObject
 {
 public:
     explicit Category(Virtaus::Collection* parent);
+    ~Category();
 
     QString* getName();
     QPoint* getPoint();
@@ -73,7 +75,8 @@ protected:
 class Virtaus::Collection : public QObject
 {
 public:
-    Collection();
+    explicit Collection();
+    ~Collection();
 
     QString getInfo (QString field = "");
 
@@ -89,6 +92,7 @@ class Virtaus::Item : public QObject
 {
 public:
     Item(Virtaus::Attribute* parent);
+    ~Item();
 
     QImage* getImage();
     QString* getName();
@@ -101,6 +105,7 @@ public:
 protected:
     QString* name;
     QImage* image;
+    QString* image_path;
     Virtaus::Attribute* parent;
 };
 

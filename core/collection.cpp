@@ -13,6 +13,15 @@ Attribute::Attribute(Virtaus::Category* parent) : QObject(parent) {
     this->z_index = 0;
 }
 
+Attribute::~Attribute() {
+    foreach (Item* i, this->itemlist->values())
+        delete i;
+
+    delete this->itemlist;
+    delete this->name;
+
+}
+
 QMap<QString, Virtaus::Item*>*
 Attribute::getItemList() {
     return this->itemlist;
@@ -67,6 +76,22 @@ Category::Category(Virtaus::Collection *parent) {
     this->attribs = new QMap<QString, Virtaus::Attribute*>;
     this->products = new QMap<QString, Virtaus::Product*>;
     this->parent = parent;
+}
+
+Category::~Category() {
+    delete this->name;
+    delete this->point;
+    delete this->size;
+
+    foreach (Attribute* a, this->attribs->values())
+        delete a;
+
+    delete this->attribs;
+
+    foreach (Product* p, this->products->values())
+        delete p;
+
+    delete this->products;
 }
 
 QString*
@@ -141,6 +166,15 @@ Collection::Collection() : QObject() {
     this->categories = new QMap<QString, Virtaus::Category*>;
 }
 
+Collection::~Collection() {
+    delete this->info;
+
+    foreach (Category* c, this->categories->values())
+        delete c;
+
+    delete this->categories;
+}
+
 QString
 Collection::getInfo (QString field) {
     if (this->info->isEmpty()) return "";
@@ -167,13 +201,24 @@ Collection::setInfo (QString key, QString value) {
  * Item class
  */
 Item::Item(Virtaus::Attribute* parent) {
-    this->image = new QImage();
-    this->name = new QString();
+    this->image = NULL;
+    this->image_path = new QString;
+    this->name = new QString;
     this->parent = parent;
+}
+
+Item::~Item() {
+    if (this->image)
+        delete this->image;
+    delete this->image_path;
+    delete this->name;
 }
 
 QImage*
 Item::getImage() {
+    if (!this->image)
+        this->image = new QImage(*this->image_path);
+
     return this->image;
 }
 
@@ -191,9 +236,8 @@ Item::getPath() {
 
 void
 Item::setImage (const QString &path) {
-    delete this->image;
-
-    this->image = new QImage (path);
+    this->image_path->clear();
+    this->image_path->append(path);
 }
 
 void
