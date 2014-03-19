@@ -82,10 +82,12 @@ public:
 
     void setInfo (QString key, QString value);
     QMap<QString, Virtaus::Category*>* getCategories();
+    QMap<QString, Virtaus::Set*>* getSets();
     QString* thumbnail;
 private:
     QMap<QString, QString> *info;
     QMap<QString, Virtaus::Category*> *categories;
+    QMap<QString, Virtaus::Set*> *sets;
 };
 
 class Virtaus::Item : public QObject

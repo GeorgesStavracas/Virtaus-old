@@ -164,6 +164,7 @@ Category::setSize (QSize *size) {
 Collection::Collection() : QObject() {
     this->info = new QMap<QString, QString>;
     this->categories = new QMap<QString, Virtaus::Category*>;
+    this->sets = new QMap<QString, Virtaus::Set*>;
 }
 
 Collection::~Collection() {
@@ -173,6 +174,11 @@ Collection::~Collection() {
         delete c;
 
     delete this->categories;
+
+    foreach (Set* s, this->sets->values())
+        delete s;
+
+    delete this->sets;
 }
 
 QString
@@ -186,6 +192,11 @@ Collection::getInfo (QString field) {
 QMap<QString, Virtaus::Category*>*
 Collection::getCategories() {
     return this->categories;
+}
+
+QMap<QString, Virtaus::Set*>*
+Collection::getSets() {
+    return this->sets;
 }
 
 void
