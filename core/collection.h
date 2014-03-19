@@ -112,18 +112,18 @@ protected:
 class Virtaus::Product : public QObject
 {
 public:
-    Product(const Virtaus::Collection *parent);
+    Product(const Virtaus::Category *parent);
 
     QString* getName();
     QMap<QString, Virtaus::Item*>* getItemList();
-    const Virtaus::Collection* getParent();
+    const Virtaus::Category* getParent();
 
     void setName (const QString& name);
 
 private:
     QString *name;
     QMap<QString, Virtaus::Item*> *items;
-    const Virtaus::Collection* parent;
+    const Virtaus::Category* parent;
 };
 
 class Virtaus::Set : public QObject

@@ -255,7 +255,7 @@ Item::setName (const QString &name) {
 /*
  * Product class
  */
-Product::Product (const Collection *parent) {
+Product::Product (const Category *parent) {
     this->parent = parent;
     this->items = new QMap<QString, Virtaus::Item*>;
     this->name = new QString;
@@ -271,7 +271,7 @@ Product::getItemList() {
     return this->items;
 }
 
-const Virtaus::Collection*
+const Virtaus::Category*
 Product::getParent() {
     return this->parent;
 }
