@@ -494,8 +494,8 @@ DataReader::loadData()
         qDebug() << "Validating collection at path '" << aux->absolutePath() << "'";
         if (this->validateCollection(aux->absolutePath())) {
             qDebug() << "Valid collection.\n";
-            //Collection* c = this->loadCollection(aux->absolutePath());
-            //list->append(c);
+            Collection* c = this->loadCollection(aux->absolutePath());
+            list->append(c);
         } else {
             qDebug() << "Invalid collection.\n";
         }
@@ -508,31 +508,20 @@ DataReader::loadData()
     return list;
 }
 
-/*
- * Load a single collection from the given path
- */
-Virtaus::Collection*
-DataReader::loadCollection (const QString& path) {
+Virtaus::Attribute*
+DataReader::loadAttribute (const QString& path, Virtaus::Category* parent)
+{
+    QDir *dir = new QDir(path);
+    Attribute* att = new Virtaus::Attribute(parent);
 
-    Collection* collection = new Collection;
+    QFile *file = new QFile(path + "/Attribute.xml");
 
-    collection->setInfo("path", path);
+    if (!file->exists()) {
+        delete dir;
+        delete att;
+        return NULL;
+    }
 
-    /* Load the thumbnail */
-    QFile *file = new QFile (path + "/thumbnail.png");
-
-    if (file->exists())
-        collection->thumbnail = new QString(path + "/thumbnail.png");
-    else
-        collection->thumbnail = new QString(":/virtaus/images/resources/no_thumbnail.svg");
-
-    delete file;
-
-    /*
-     * This is safe because this method is only called
-     * for valid directories
-     */
-    file = new QFile(path + "/Collection.xml");
     file->open(QIODevice::ReadOnly | QIODevice::Text);
 
     QXmlStreamReader xml(file);
@@ -543,76 +532,27 @@ DataReader::loadCollection (const QString& path) {
         /* Read the next element */
         QXmlStreamReader::TokenType token = xml.readNext();
 
-        /* If it's the start of document, we can skip safely */
-        if (token == QXmlStreamReader::StartDocument)
-            continue;
-
-        /* Parse the doc data */
         if (token == QXmlStreamReader::StartElement) {
 
-            /* Ge the collection name */
-            if (xml.name() == "collection") {
+            /* Load the item */
+            if (xml.name() == "draw") {
 
                 QXmlStreamAttributes attribs = xml.attributes();
 
-                if (attribs.hasAttribute("name"))
-                    collection->setInfo ("name", attribs.value("name").toString());
+                QFileInfo* info = new QFileInfo(path + "/" + attribs.value("name").toString());
 
+                Virtaus::Item* item = new Virtaus::Item(att);
+                item->setName(info->baseName());
+                item->setImage(info->absoluteFilePath());
+
+                att->getItemList()->insert(info->baseName(), item);
             }
 
-            if (xml.name() == "author") {
-                xml.readNext();
-
-                if (xml.tokenType() == QXmlStreamReader::Characters)
-                    collection->setInfo("author", xml.text().toString());
-
-            }
-
-            if (xml.name() == "email") {
-                xml.readNext();
-
-                if (xml.tokenType() == QXmlStreamReader::Characters)
-                    collection->setInfo("email", xml.text().toString());
-
-            }
-
-            if (xml.name() == "categories") {
-
-                while (!(xml.tokenType() == QXmlStreamReader::EndElement &&
-                       xml.name() == "categories"))
-                {
-
-                    token = xml.readNext();
-
-                    if (token == QXmlStreamReader::StartElement &&
-                            xml.name() == "category")
-                    {
-                        QXmlStreamAttributes attribs = xml.attributes();
-
-                        if (attribs.hasAttribute("name")){}
-                            //collection->getCategories()->append(attribs.value("name").toString());
-
-
-                    }
-
-                }
-
-            }
         }
 
     }
 
-    /* Parsing error */
-    if (xml.hasError()) {
-        delete collection;
-        collection = NULL;
-    }
-
-    xml.clear();
-
-    delete file;
-
-    return collection;
+    return att;
 }
 
 /*
@@ -669,13 +609,78 @@ DataReader::loadCategory (const QString &path, Collection *parent)
                     c->getSize()->setHeight(attribs.value("height").toString().toInt());
             }
 
-            /*
-             * TODO: finish Category loading.
-             *
-             * Missing:
-             * - Attribute loading
-             * - Product loading
-             */
+            /* Load attributes */
+            if (xml.name() == "attribute") {
+
+                QXmlStreamAttributes attribs = xml.attributes();
+
+                if (attribs.hasAttribute("name")) {
+
+                    QString attrib_name = attribs.value("name").toString();
+
+                    /* Load the corresponding attribute */
+                    Attribute* attrib = loadAttribute(path + "/" + attrib_name, c);
+                    attrib->setName(attrib_name);
+
+                    c->getAttributeList()->insert(attrib_name, attrib);
+                }
+            }
+
+            /* Load products */
+            if (xml.name() == "product") {
+
+                Virtaus::Product* product = new Virtaus::Product(c);
+
+                QXmlStreamAttributes attribs = xml.attributes();
+
+                /* Only load products with name */
+                if (attribs.hasAttribute("name"))
+                    product->setName(attribs.value("name").toString());
+                else {
+                    delete product;
+                    continue;
+                }
+
+                while (!(xml.tokenType() == QXmlStreamReader::EndElement &&
+                         xml.name() == "product"))
+                {
+                    if (xml.tokenType() == QXmlStreamReader::StartElement &&
+                            xml.name() == "item")
+                    {
+                        QXmlStreamAttributes attrs = xml.attributes();
+
+                        QString name = attrs.value("name").toString();
+                        QString attribute = attrs.value("attribute").toString();
+
+                        if (!hasItem(path+"/"+attribute, name)) {
+                            delete product;
+                            product = NULL;
+                            break;
+                        }
+
+                        if (!c->getAttributeList()->contains(attribute)) {
+                            delete product;
+                            product = NULL;
+                            break;
+                        }
+
+                        Attribute* attrib_data = c->getAttributeList()->value(attribute);
+                        Virtaus::Item* item = attrib_data->getItemList()->value(name);
+
+                        /* Product name is '[Attribute]/[Item]' */
+                        product->getItemList()->insert(attribute+"/"+name, item);
+
+                    }
+
+                    xml.readNext();
+                }
+
+                /* Only add to the list when the product actually exists */
+                if (product)
+                    c->getProductList()->insert(*product->getName(), product);
+
+            }
+
         }
     }
 
@@ -683,6 +688,175 @@ DataReader::loadCategory (const QString &path, Collection *parent)
     delete file;
 
     return c;
+}
+
+/*
+ * Load a single collection from the given path
+ */
+Virtaus::Collection*
+DataReader::loadCollection (const QString& path) {
+
+    Collection* collection = new Collection;
+
+    collection->setInfo("path", path);
+
+    /* Load the thumbnail */
+    QFile *file = new QFile (path + "/thumbnail.png");
+
+    if (file->exists())
+        collection->thumbnail = new QString(path + "/thumbnail.png");
+    else
+        collection->thumbnail = new QString(":/virtaus/images/resources/no_thumbnail.svg");
+
+    delete file;
+
+    /*
+     * This is safe because this method is only called
+     * for valid directories
+     */
+    file = new QFile(path + "/Collection.xml");
+    file->open(QIODevice::ReadOnly | QIODevice::Text);
+
+    QXmlStreamReader xml(file);
+
+    /* Parse the XML file, token by token */
+    while (!xml.atEnd() && !xml.hasError()) {
+
+        /* Read the next element */
+        QXmlStreamReader::TokenType token = xml.readNext();
+
+        /* Parse the doc data */
+        if (token == QXmlStreamReader::StartElement) {
+
+            /* Ge the collection name */
+            if (xml.name() == "collection") {
+
+                QXmlStreamAttributes attribs = xml.attributes();
+
+                if (attribs.hasAttribute("name"))
+                    collection->setInfo ("name", attribs.value("name").toString());
+
+            }
+
+            if (xml.name() == "author") {
+                xml.readNext();
+
+                if (xml.tokenType() == QXmlStreamReader::Characters)
+                    collection->setInfo("author", xml.text().toString());
+
+            }
+
+            if (xml.name() == "email") {
+                xml.readNext();
+
+                if (xml.tokenType() == QXmlStreamReader::Characters)
+                    collection->setInfo("email", xml.text().toString());
+
+            }
+
+            if (xml.name() == "categories") {
+
+                while (!(xml.tokenType() == QXmlStreamReader::EndElement &&
+                       xml.name() == "categories"))
+                {
+
+                    token = xml.readNext();
+
+                    if (token == QXmlStreamReader::StartElement &&
+                            xml.name() == "category")
+                    {
+                        QXmlStreamAttributes attribs = xml.attributes();
+
+                        if (attribs.hasAttribute("name")){
+                            QString c_name = attribs.value("name").toString();
+                            QString c_path = path + "/" + c_name;
+
+                            Category* category = loadCategory(c_path, collection);
+                            category->setName(c_name);
+
+                            collection->getCategories()->insert(c_name, category);
+                        }
+                    }
+                }
+            }
+
+            /* Load Sets */
+            if (xml.name() == "sets") {
+
+                while (!(xml.tokenType() == QXmlStreamReader::EndElement &&
+                         xml.name() == "sets"))
+                {
+
+                    /* Load a set */
+                    if (xml.tokenType() == QXmlStreamReader::StartElement &&
+                        xml.name() == "set")
+                    {
+
+                        QXmlStreamAttributes attribs = xml.attributes();
+
+                        if (attribs.hasAttribute("name")){
+                            Virtaus::Set* set = new Virtaus::Set(collection);
+                            set->setName(attribs.value("name").toString());
+
+                            while (!(xml.tokenType() == QXmlStreamReader::EndElement &&
+                                     xml.name() == "set"))
+                            {
+
+                                if (xml.tokenType() == QXmlStreamReader::StartElement &&
+                                    xml.name() == "product")
+                                {
+                                    QXmlStreamAttributes attribs2 = xml.attributes();
+
+                                    QString p_name = attribs2.value("name").toString();
+                                    QString p_catg = attribs2.value("category").toString();
+
+                                    if (!collection->getCategories()->contains(p_catg)) {
+                                        delete set;
+                                        set = NULL;
+                                        break;
+                                    }
+
+                                    Virtaus::Category* catg = collection->getCategories()->value(p_catg);
+
+                                    if (!catg->getProductList()->contains(p_name)) {
+                                        delete set;
+                                        set = NULL;
+                                        break;
+                                    }
+
+                                    Virtaus::Product* prod = catg->getProductList()->value(p_name);
+
+                                    set->getProductList()->insert(p_catg+"/"+p_name, prod);
+                                }
+
+
+                                xml.readNext();
+                            }
+
+                            if (set)
+                                collection->getSets()->insert(*set->getName(), set);
+
+                        }
+                    }
+
+                    xml.readNext();
+                }
+
+            }
+        }
+    }
+
+    /* Parsing error */
+    if (xml.hasError()) {
+        delete collection;
+        collection = NULL;
+    }
+
+    xml.clear();
+
+    delete file;
+
+    return collection;
 }
 
 QString*
