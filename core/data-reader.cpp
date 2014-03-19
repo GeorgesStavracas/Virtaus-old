@@ -363,20 +363,6 @@ DataReader::validateCollection(const QString &path)
 }
 
 bool
-DataReader::hasAttribute(const QString& path, const QString& attrib)
-{
-    // TODO
-    return false;
-}
-
-bool
-DataReader::hasCategory(const QString& path, const QString& category)
-{
-    // TODO
-    return false;
-}
-
-bool
 DataReader::hasItem(const QString& path, const QString& item)
 {
     QFile *file = new QFile (path + "/Attribute.xml");
