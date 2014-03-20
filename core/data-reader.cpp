@@ -44,6 +44,8 @@ DataReader::validateAttribute(const QString &path)
 
     QXmlStreamReader xml(file);
 
+    bool valid = true;
+
     /* Parse the XML file */
     while (!xml.atEnd() && !xml.hasError()) {
 
@@ -70,16 +72,21 @@ DataReader::validateAttribute(const QString &path)
 
                     QFile *img = new QFile (path + "/" + attribs.value("name").toString());
 
-                    if (!img->exists()) {
-                        delete img;
-                        delete file;
-                        return false;
-                    }
+                    if (!img->exists())
+                        valid = false;
 
                     delete img;
                 }
+                else
+                    valid = false;
             }
         }
+
+        if (!valid) {
+            delete file;
+            return false;
+        }
+
     }
 
     xml.clear();
@@ -115,6 +122,8 @@ DataReader::validateCategory(const QString &path)
 
     QXmlStreamReader xml(file);
 
+    bool valid = true;
+
     /* Parse the XML file */
     while (!xml.atEnd() && !xml.hasError()) {
         /* Read the next element */
@@ -131,8 +140,7 @@ DataReader::validateCategory(const QString &path)
                 xml.name() != "product" &&
                 xml.name() != "item")
             {
-                delete file;
-                return false;
+                valid = false;
             }
 
             /* Check if the category has position and size fields */
@@ -144,8 +152,7 @@ DataReader::validateCategory(const QString &path)
                     !attribs.hasAttribute("width") ||
                     !attribs.hasAttribute("height"))
                 {
-                    delete file;
-                    return false;
+                    valid = false;
                 }
             }
 
@@ -162,10 +169,8 @@ DataReader::validateCategory(const QString &path)
 
                     delete attrib;
 
-                    if (!attrib_valid) {
-                        delete file;
-                        return false;
-                    }
+                    if (!attrib_valid)
+                        valid = false;
 
                 }
             } // if (name == "attribute)
@@ -191,22 +196,33 @@ DataReader::validateCategory(const QString &path)
 
                            QString attrib_path = path + "/" + attribs.value("attribute").toString();
 
-                           if (!hasItem(attrib_path, attribs.value("name").toString())) {
-                               delete file;
-                               return false;
-                           } // if has item
+                           if (!hasItem(attrib_path, attribs.value("name").toString()))
+                               valid = false;
+
                        } // if attribs
-                       else {
-                           delete file;
-                           return false;
-                       }
+
+                       else
+                           valid = false;
+
                    } // if item
 
+                   if (!valid) {
+                       delete file;
+                       return false;
+                   }
+
                    xml.readNext();
+
                }
 
             }
         }
+
+        if (!valid) {
+            delete file;
+            return false;
+        }
+
     }
 
     xml.clear();
@@ -236,6 +252,8 @@ DataReader::validateCollection(const QString &path)
     info_xml = false;
     dir = new QDir (path);
     entries = dir->entryList(QDir::Files);
+
+    bool valid = true;
 
     foreach (const QString& str, entries)
     {
@@ -292,21 +310,18 @@ DataReader::validateCollection(const QString &path)
                                     }
 
                                     else
-                                    {
-                                        /*
-                                         * The code bruptly ends here when the collection
-                                         * is not valid in order to avoid unnecessary
-                                         * iteration.
-                                         */
-                                        delete file;
-                                        delete dir;
-                                        return false;
-                                    }
+                                        valid = false;
 
                                     /* Return to the previous directory */
                                     dir->cdUp();
-                                }
+                                } else
+                                    valid = false;
                             } //if
+
+                            if (!valid) {
+                                delete file;
+                                return false;
+                            }
 
                             xml.readNext();
                         }
@@ -323,17 +338,18 @@ DataReader::validateCollection(const QString &path)
 
                             QString prod_path = path + "/" + attribs.value("category").toString();
 
-                            if (!hasProduct(prod_path, attribs.value("name").toString())) {
-                                delete file;
-                                return false;
-                            }
+                            if (!hasProduct(prod_path, attribs.value("name").toString()))
+                                valid = false;
                         }
 
-                        else {
-                            delete file;
-                            return false;
-                        }
+                        else
+                            valid = false;
                     }
+                }
+
+                if (!valid) {
+                    delete file;
+                    return false;
                 }
 
                 xml.readNext();
