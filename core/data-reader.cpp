@@ -503,7 +503,7 @@ DataReader::loadData()
     QDir *dir = new QDir(*this->dir);
     QList<Virtaus::Collection*> *list = new QList<Virtaus::Collection*>;
 
-    foreach (const QString& path, dir->entryList(QDir::Dirs)) {
+    foreach (const QString& path, dir->entryList(QDir::NoDotAndDotDot | QDir::Dirs)) {
         QDir *aux = new QDir(*dir);
         aux->cd(path);
 
