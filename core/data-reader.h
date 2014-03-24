@@ -20,10 +20,7 @@ class Virtaus::DataReader :
 public:
         DataReader();
 
-        void setDir (const QString& dir);
-
-        QString* getDir ();
-        QList<Virtaus::Collection*>* loadData();
+        QList<Virtaus::Collection*>* loadData(const QString& path);
 
         /* Validating methods */
         bool validateAttribute(const QString& path);
@@ -35,8 +32,6 @@ public:
         bool hasProduct (const QString& path, const QString& product);
 
 protected:
-        QString* dir;
-
         /* Loading methods */
         Virtaus::Attribute* loadAttribute (const QString& path, Virtaus::Category* parent);
         Virtaus::Category* loadCategory (const QString& path, Virtaus::Collection* parent);

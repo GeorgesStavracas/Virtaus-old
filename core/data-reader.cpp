@@ -5,22 +5,7 @@ using namespace Virtaus;
 
 DataReader::DataReader() : QObject()
 {
-    QDir dir(QDir::homePath()+"/"+QObject::tr("My Collections"));
-
-    if (!dir.exists())
-        dir.mkdir(dir.absolutePath());
-
-    this->dir = new QString(dir.absolutePath());
 }
-
-void
-DataReader::setDir(const QString& dir)
-{
-    this->dir->clear();
-    this->dir->append(dir);
-
-}
-
 
 /*
  * DataReader::validateAttribute(QString&)
@@ -497,26 +482,25 @@ DataReader::hasProduct (const QString& path, const QString& product)
  * All the valid collections
  */
 QList<Virtaus::Collection*>*
-DataReader::loadData()
+DataReader::loadData(const QString& path)
 {
     qDebug() << "Loading data...\n";
-    QDir *dir = new QDir(*this->dir);
+    QDir *dir = new QDir(path);
     QList<Virtaus::Collection*> *list = new QList<Virtaus::Collection*>;
 
-    foreach (const QString& path, dir->entryList(QDir::NoDotAndDotDot | QDir::Dirs)) {
-        QDir *aux = new QDir(*dir);
-        aux->cd(path);
+    foreach (const QString& subdir, dir->entryList(QDir::NoDotAndDotDot | QDir::Dirs)) {
+        dir->cd(subdir);
 
-        qDebug() << "Validating collection at path '" << aux->absolutePath() << "'";
-        if (this->validateCollection(aux->absolutePath())) {
+        qDebug() << "Validating collection at path '" << dir->absolutePath() << "'";
+        if (this->validateCollection(dir->absolutePath())) {
             qDebug() << "Valid collection.\n";
-            Collection* c = this->loadCollection(aux->absolutePath());
+            Collection* c = this->loadCollection(dir->absolutePath());
             list->append(c);
         } else {
             qDebug() << "Invalid collection.\n";
         }
 
-        delete aux;
+        dir->cd(path);
     }
 
     delete dir;
@@ -873,9 +857,4 @@ DataReader::loadCollection (const QString& path) {
     delete file;
 
     return collection;
-}
-
-QString*
-DataReader::getDir () {
-    return this->dir;
 }
