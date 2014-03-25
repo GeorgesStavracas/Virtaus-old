@@ -238,6 +238,11 @@ Item::getName() {
     return new QString (*(this->name));
 }
 
+Virtaus::Attribute*
+Item::getParent() {
+    return this->parent;
+}
+
 QString&
 Item::getPath() {
     QString* path = new QString(this->parent->getPath());
