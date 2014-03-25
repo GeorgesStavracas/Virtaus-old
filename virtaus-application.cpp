@@ -1,6 +1,42 @@
 #include "virtaus-application.h"
 
-VirtausApplication::VirtausApplication(QObject *parent) :
-    QObject(parent)
+VirtausApplication::VirtausApplication (int & argc, char ** argv) :
+    QApplication(argc, argv)
 {
+    this->window = new VirtausWindow(this);
+    this->reader = new Virtaus::DataReader;
+    this->loaded_data = new QList<Virtaus::Collection*>;
+    this->settings = Virtaus::Settings::getInstance();
+
+    this->settings->setFile(this->applicationDirPath().append("/config.ini"));
+}
+
+
+
+void
+VirtausApplication::showGUI()
+{
+    this->window->showMaximized();
+}
+
+void
+VirtausApplication::loadData()
+{
+    QDir *dir = new QDir(QDir::homePath()+"/"+tr("My Collections"));
+
+    if (!dir->exists())
+        dir->mkdir(dir->absolutePath());
+
+    /* Load the main list */
+    this->loaded_data = this->reader->loadData(dir->absolutePath());
+
+
+    delete dir;
+
+}
+
+QList<Virtaus::Collection*>*
+VirtausApplication::getData()
+{
+    return this->loaded_data;
 }

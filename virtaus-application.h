@@ -1,18 +1,50 @@
 #ifndef VIRTAUSAPPLICATION_H
 #define VIRTAUSAPPLICATION_H
 
-#include <QObject>
+#include <QtGui>
+#include "core/collection.h"
+#include "core/data-reader.h"
+#include "core/data-writer.h"
+#include "core/settings.h"
+#include "virtaus-window.h"
 
-class VirtausApplication : public QObject
+namespace Ui {
+    class VirtausApplication;
+}
+
+/*
+ * Forward declarations
+ */
+class VirtausWindow;
+
+/*
+ * Class definition
+ */
+class VirtausApplication : public QApplication
 {
-    Q_OBJECT
+
 public:
-    explicit VirtausApplication(QObject *parent = 0);
+    explicit VirtausApplication (int & argc, char ** argv);
+
+    /* GUI */
+    void showGUI();
+
+    /* Data manager */
+    void loadData();
+
+    QList<Virtaus::Collection*>* getData();
+
 
 signals:
 
 public slots:
 
+protected:
+    VirtausWindow *window;
+    Virtaus::DataReader *reader;
+    Virtaus::Settings* settings;
+
+    QList<Virtaus::Collection*> *loaded_data;
 };
 
 #endif // VIRTAUSAPPLICATION_H
