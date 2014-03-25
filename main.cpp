@@ -1,12 +1,11 @@
-#include "virtaus-window.h"
-#include <QApplication>
+#include "virtaus-application.h"
 
 int main(int argc, char *argv[])
 {
 
-    QApplication a(argc, argv);
-    VirtausWindow *w = new VirtausWindow;
-    w->showMaximized();
+    VirtausApplication app(argc, argv);
 
-    return a.exec();
+    app.showGUI();
+
+    return app.exec();
 }
