@@ -264,8 +264,19 @@ DataReader::validateCollection(const QString &path)
                         xml.name() != "author" &&
                         xml.name() != "email")
                     {
+                        file->close();
                         delete file;
                         return false;
+                    }
+
+                    if (xml.name().toString() == "collection") {
+                        QXmlStreamAttributes attribs = xml.attributes();
+
+                        if (!(attribs.hasAttribute("width") &&
+                              attribs.hasAttribute("height")))
+                        {
+                            valid = false;
+                        }
                     }
 
                     /* Parse CATEGORIES first */
@@ -304,6 +315,7 @@ DataReader::validateCollection(const QString &path)
                             } //if
 
                             if (!valid) {
+                                file->close();
                                 delete file;
                                 return false;
                             }
@@ -333,6 +345,7 @@ DataReader::validateCollection(const QString &path)
                 }
 
                 if (!valid) {
+                    file->close();
                     delete file;
                     return false;
                 }
@@ -736,6 +749,11 @@ DataReader::loadCollection (const QString& path) {
                 if (attribs.hasAttribute("name"))
                     collection->setInfo ("name", attribs.value("name").toString());
 
+                if (attribs.hasAttribute("width"))
+                    collection->setInfo("width", attribs.value("width").toString());
+
+                if (attribs.hasAttribute("height"))
+                    collection->setInfo("height", attribs.value("height").toString());
             }
 
             if (xml.name() == "author") {
