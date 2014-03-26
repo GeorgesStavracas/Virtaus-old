@@ -556,6 +556,7 @@ DataReader::loadAttribute (const QString& path, Virtaus::Category* parent)
 
                 Virtaus::Item* item = new Virtaus::Item(att);
                 item->setName(info->baseName());
+                item->setFilename(info->fileName());
                 item->setImage(info->absoluteFilePath());
 
                 att->getItemList()->insert(info->baseName(), item);
