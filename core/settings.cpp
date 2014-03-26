@@ -8,8 +8,7 @@ Settings::Settings() : QObject()
 {
     QDir* dir = new QDir;
     this->config_file = new QString(dir->currentPath()+"/config.ini");
-    qDebug() << (*this->config_file);
-    this->settings = new QSettings(*this->config_file);
+    this->settings = new QSettings(*this->config_file, QSettings::NativeFormat);
 }
 
 void
@@ -19,18 +18,14 @@ Settings::setFile(QString &file)
     this->config_file->append(file);
 
     delete this->settings;
-    this->settings = new QSettings(*this->config_file);
-
-    qDebug() << (*this->config_file);
+    this->settings = new QSettings(*this->config_file, QSettings::NativeFormat);
 }
 
 Settings*
 Settings::getInstance()
 {
-    if (!instance) {
+    if (!instance)
         instance = new Settings;
-        qDebug() << "Instance created";
-    }
 
     return instance;
 }

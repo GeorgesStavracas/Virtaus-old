@@ -3,12 +3,13 @@
 
 #include <QtCore>
 #include <QSettings>
+#include <string>
+#include <sstream>
+#include <iostream>
 
 namespace Virtaus {
     class Settings;
 }
-
-class VirtausApplication;
 
 class Virtaus::Settings : public QObject
 {
@@ -20,7 +21,19 @@ public:
 
     void setFile(QString& file);
 
-    template<typename T> T setting(QString& field);
+    template<typename T> T get(QString field)
+    {
+        std::string value = this->settings->value(field, "").toString().toStdString();
+        std::stringstream ss(value);
+        T t;
+        ss >> t;
+        return t;
+    }
+
+    void set(QString& field, QString& value)
+    {
+        this->settings->setValue(field, value);
+    }
 
 private:
     static Settings* instance;
