@@ -215,6 +215,7 @@ Item::Item(Virtaus::Attribute* parent) {
     this->image = NULL;
     this->image_path = new QString;
     this->name = new QString;
+    this->filename = new QString;
     this->parent = parent;
 }
 
@@ -233,9 +234,14 @@ Item::getImage() {
     return this->image;
 }
 
-QString*
+QString&
 Item::getName() {
-    return new QString (*(this->name));
+    return *(this->name);
+}
+
+QString&
+Item::getFilename() {
+    return *(this->filename);
 }
 
 Virtaus::Attribute*
@@ -262,6 +268,11 @@ Item::setName (const QString &name) {
     this->name->append(name);
 }
 
+void
+Item::setFilename (const QString &name) {
+    this->filename->clear();
+    this->filename->append(name);
+}
 
 
 

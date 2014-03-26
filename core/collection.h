@@ -96,16 +96,19 @@ public:
     Item(Virtaus::Attribute* parent);
     ~Item();
 
+    QString& getFilename();
     QImage* getImage();
-    QString* getName();
+    QString& getName();
     Virtaus::Attribute* getParent();
     QString& getPath();
 
+    void setFilename (const QString& name);
     void setImage (const QString& path);
     void setName (const QString& name);
 
 protected:
     QString* name;
+    QString* filename;
     QImage* image;
     QString* image_path;
     Virtaus::Attribute* parent;
