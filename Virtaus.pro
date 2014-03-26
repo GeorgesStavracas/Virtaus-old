@@ -2,7 +2,7 @@ TARGET = Virtaus
 TEMPLATE = app
 
 QT += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets xml
 
 
 SOURCES += main.cpp\
@@ -18,7 +18,9 @@ SOURCES += main.cpp\
     animated-stacked-widget.cpp \
     diagram/diagram-row.cpp \
     diagram/product-view.cpp \
-    diagram/diagram-view.cpp
+    diagram/diagram-view.cpp \
+    virtaus-application.cpp \
+    core/settings.cpp
 
 HEADERS  += virtaus-window.h \
     collection-view.h \
@@ -32,7 +34,9 @@ HEADERS  += virtaus-window.h \
     animated-stacked-widget.h \
     diagram/diagram-row.h \
     diagram/product-view.h \
-    diagram/diagram-view.h
+    diagram/diagram-view.h \
+    virtaus-application.h \
+    core/settings.h
 
 FORMS    += virtaus-window.ui \
     collection-view.ui \
