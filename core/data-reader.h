@@ -8,10 +8,12 @@
 #include "collection.h"
 
 namespace Virtaus {
-    class DataReader;
+    namespace Core {
+        class DataReader;
+    }
 }
 
-class Virtaus::DataReader :
+class Virtaus::Core::DataReader :
         public QObject
 {
 
@@ -20,7 +22,7 @@ class Virtaus::DataReader :
 public:
         DataReader();
 
-        QList<Virtaus::Collection*>* loadData(const QString& path);
+        QList<Virtaus::Core::Collection*>* loadData(const QString& path);
 
         /* Validating methods */
         bool validateAttribute(const QString& path);
@@ -33,9 +35,9 @@ public:
 
 protected:
         /* Loading methods */
-        Virtaus::Attribute* loadAttribute (const QString& path, Virtaus::Category* parent);
-        Virtaus::Category* loadCategory (const QString& path, Virtaus::Collection* parent);
-        Virtaus::Collection* loadCollection (const QString& path);
+        Virtaus::Core::Attribute* loadAttribute (const QString& path, Virtaus::Core::Category* parent);
+        Virtaus::Core::Category* loadCategory (const QString& path, Virtaus::Core::Collection* parent);
+        Virtaus::Core::Collection* loadCollection (const QString& path);
 
 };
 

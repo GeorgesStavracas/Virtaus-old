@@ -1,7 +1,7 @@
 #include "data-reader.h"
 #include <iostream>
 
-using namespace Virtaus;
+using namespace Virtaus::Core;
 
 DataReader::DataReader() : QObject()
 {
@@ -494,12 +494,12 @@ DataReader::hasProduct (const QString& path, const QString& product)
  * At the given path, load recursively
  * All the valid collections
  */
-QList<Virtaus::Collection*>*
+QList<Virtaus::Core::Collection*>*
 DataReader::loadData(const QString& path)
 {
     qDebug() << "Loading data...\n";
     QDir *dir = new QDir(path);
-    QList<Virtaus::Collection*> *list = new QList<Virtaus::Collection*>;
+    QList<Virtaus::Core::Collection*> *list = new QList<Virtaus::Core::Collection*>;
 
     foreach (const QString& subdir, dir->entryList(QDir::NoDotAndDotDot | QDir::Dirs)) {
         dir->cd(subdir);
@@ -521,11 +521,11 @@ DataReader::loadData(const QString& path)
     return list;
 }
 
-Virtaus::Attribute*
-DataReader::loadAttribute (const QString& path, Virtaus::Category* parent)
+Virtaus::Core::Attribute*
+DataReader::loadAttribute (const QString& path, Virtaus::Core::Category* parent)
 {
     QDir *dir = new QDir(path);
-    Attribute* att = new Virtaus::Attribute(parent);
+    Attribute* att = new Virtaus::Core::Attribute(parent);
 
     QFile *file = new QFile(path + "/Attribute.xml");
 
@@ -554,7 +554,7 @@ DataReader::loadAttribute (const QString& path, Virtaus::Category* parent)
 
                 QFileInfo* info = new QFileInfo(path + "/" + attribs.value("name").toString());
 
-                Virtaus::Item* item = new Virtaus::Item(att);
+                Virtaus::Core::Item* item = new Virtaus::Core::Item(att);
                 item->setName(info->baseName());
                 item->setFilename(info->fileName());
                 item->setImage(info->absoluteFilePath());
@@ -572,11 +572,11 @@ DataReader::loadAttribute (const QString& path, Virtaus::Category* parent)
 /*
  * Load a single category for the given path
  */
-Virtaus::Category*
+Virtaus::Core::Category*
 DataReader::loadCategory (const QString &path, Collection *parent)
 {
     QDir *dir = new QDir(path);
-    Category* c = new Virtaus::Category(parent);
+    Category* c = new Virtaus::Core::Category(parent);
 
     QFile *file = new QFile(path + "/Category.xml");
 
@@ -643,7 +643,7 @@ DataReader::loadCategory (const QString &path, Collection *parent)
             /* Load products */
             if (xml.name() == "product") {
 
-                Virtaus::Product* product = new Virtaus::Product(c);
+                Virtaus::Core::Product* product = new Virtaus::Core::Product(c);
 
                 QXmlStreamAttributes attribs = xml.attributes();
 
@@ -679,7 +679,7 @@ DataReader::loadCategory (const QString &path, Collection *parent)
                         }
 
                         Attribute* attrib_data = c->getAttributeList()->value(attribute);
-                        Virtaus::Item* item = attrib_data->getItemList()->value(name);
+                        Virtaus::Core::Item* item = attrib_data->getItemList()->value(name);
 
                         /* Product name is '[Attribute]/[Item]' */
                         product->getItemList()->insert(attribute+"/"+name, item);
@@ -707,7 +707,7 @@ DataReader::loadCategory (const QString &path, Collection *parent)
 /*
  * Load a single collection from the given path
  */
-Virtaus::Collection*
+Virtaus::Core::Collection*
 DataReader::loadCollection (const QString& path) {
 
     Collection* collection = new Collection;
@@ -814,7 +814,7 @@ DataReader::loadCollection (const QString& path) {
                         QXmlStreamAttributes attribs = xml.attributes();
 
                         if (attribs.hasAttribute("name")){
-                            Virtaus::Set* set = new Virtaus::Set(collection);
+                            Virtaus::Core::Set* set = new Virtaus::Core::Set(collection);
                             set->setName(attribs.value("name").toString());
 
                             while (!(xml.tokenType() == QXmlStreamReader::EndElement &&
@@ -835,7 +835,7 @@ DataReader::loadCollection (const QString& path) {
                                         break;
                                     }
 
-                                    Virtaus::Category* catg = collection->getCategories()->value(p_catg);
+                                    Virtaus::Core::Category* catg = collection->getCategories()->value(p_catg);
 
                                     if (!catg->getProductList()->contains(p_name)) {
                                         delete set;
@@ -843,7 +843,7 @@ DataReader::loadCollection (const QString& path) {
                                         break;
                                     }
 
-                                    Virtaus::Product* prod = catg->getProductList()->value(p_name);
+                                    Virtaus::Core::Product* prod = catg->getProductList()->value(p_name);
 
                                     set->getProductList()->insert(p_catg+"/"+p_name, prod);
                                 }

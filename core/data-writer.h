@@ -2,15 +2,42 @@
 #define DATAWRITER_H
 
 #include <QtCore>
+#include <QtXml>
+#include "core/collection.h"
+#include "core/data-reader.h"
+#include "core/settings.h"
 
 namespace Virtaus {
-    class DataWriter;
+    namespace Core {
+        class DataWriter;
+    }
 }
 
-class Virtaus::DataWriter
+class Virtaus::Core::DataWriter : public QObject
 {
+
+    Q_OBJECT
+
 public:
-    DataWriter();
+    explicit DataWriter();
+
+    /* Saving methods */
+    bool saveAttribute(Virtaus::Core::Attribute* attribute);
+    bool saveCategory(Virtaus::Core::Category* category);
+    bool saveCollection(Virtaus::Core::Collection* collection);
+    bool saveItem(Virtaus::Core::Item* item);
+
+    /* Appending methods */
+    bool appendSet(Virtaus::Core::Set* set);
+    bool appendProduct(Virtaus::Core::Product* product);
+
+    /* Deletion methods */
+    bool removeAttibute(Virtaus::Core::Attribute* attribute);
+    bool removeCategory(Virtaus::Core::Category* category);
+    bool removeCollection(Virtaus::Core::Collection* collection);
+    bool removeItem(Virtaus::Core::Item* item);
+    bool removeSet(Virtaus::Core::Set* set);
+    bool removeProduct(Virtaus::Core::Product* product);
 };
 
 #endif // DATAWRITER_H

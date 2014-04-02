@@ -1,8 +1,8 @@
 #include "settings.h"
 
-using namespace Virtaus;
+using namespace Virtaus::Core;
 
-Settings* Virtaus::Settings::instance = NULL;
+Settings* Virtaus::Core::Settings::instance = NULL;
 
 Settings::Settings() : QObject()
 {

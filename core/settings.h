@@ -8,10 +8,12 @@
 #include <iostream>
 
 namespace Virtaus {
-    class Settings;
+    namespace Core {
+        class Settings;
+    }
 }
 
-class Virtaus::Settings : public QObject
+class Virtaus::Core::Settings : public QObject
 {
 
     Q_OBJECT
