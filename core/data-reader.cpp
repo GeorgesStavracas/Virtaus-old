@@ -508,6 +508,7 @@ DataReader::loadData(const QString& path)
         if (this->validateCollection(dir->absolutePath())) {
             qDebug() << "Valid collection.\n";
             Collection* c = this->loadCollection(dir->absolutePath());
+            this->loadCollectionInfo(c);
             list->append(c);
         } else {
             qDebug() << "Invalid collection.\n";
@@ -876,4 +877,53 @@ DataReader::loadCollection (const QString& path) {
     delete file;
 
     return collection;
+}
+
+bool
+DataReader::loadCollectionInfo(Collection *collection)
+{
+    if (!collection) return false;
+
+    /*
+     * This is safe because this method is only called
+     * for valid directories
+     */
+    QFile* file = new QFile(collection->getInfo("path") + "/Info.xml");
+    file->open(QIODevice::ReadOnly | QIODevice::Text);
+
+    QXmlStreamReader xml(file);
+
+    /* Parse the XML file, token by token */
+    while (!xml.atEnd() && !xml.hasError()) {
+
+        /* Load information */
+        if (xml.tokenType() == QXmlStreamReader::StartElement &&
+            xml.name() == "field")
+        {
+
+            QXmlStreamAttributes attribs = xml.attributes();
+
+            if (attribs.hasAttribute("name")){
+
+                QString field = attribs.value("name").toString();
+
+                xml.readNext();
+
+                if (xml.tokenType() == QXmlStreamReader::Characters) {
+
+                    collection->setInfo(field, xml.text().toString());
+
+                    qDebug() << "Adding field " << field << ": \n" << xml.text().toString();
+                }
+
+            }
+
+        }
+
+        xml.readNext();
+    }
+
+    delete file;
+
+    return true;
 }

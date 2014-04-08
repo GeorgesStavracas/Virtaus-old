@@ -38,6 +38,7 @@ protected:
         Virtaus::Core::Attribute* loadAttribute (const QString& path, Virtaus::Core::Category* parent);
         Virtaus::Core::Category* loadCategory (const QString& path, Virtaus::Core::Collection* parent);
         Virtaus::Core::Collection* loadCollection (const QString& path);
+        bool loadCollectionInfo(Virtaus::Core::Collection* collection);
 
 };
 
