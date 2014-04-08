@@ -19,7 +19,7 @@ class Virtaus::Core::Settings : public QObject
     Q_OBJECT
 
 public:
-    static Virtaus::Settings* getInstance();
+    static Virtaus::Core::Settings* getInstance();
 
     void setFile(QString& file);
 
