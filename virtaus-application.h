@@ -32,7 +32,7 @@ public:
     /* Data manager */
     void loadData();
 
-    QList<Virtaus::Collection*>* getData();
+    QList<Virtaus::Core::Collection*>* getData();
 
 
 signals:
@@ -41,10 +41,10 @@ public slots:
 
 protected:
     VirtausWindow *window;
-    Virtaus::DataReader *reader;
-    Virtaus::Settings* settings;
+    Virtaus::Core::DataReader *reader;
+    Virtaus::Core::Settings* settings;
 
-    QList<Virtaus::Collection*> *loaded_data;
+    QList<Virtaus::Core::Collection*> *loaded_data;
 };
 
 #endif // VIRTAUSAPPLICATION_H

@@ -95,6 +95,25 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="collectionInfoPage">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="CollectionInfoView" name="collectionInfoView" native="true"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -124,6 +143,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionSobre_o_Virtaus"/>
+    <addaction name="actionAbout_Qt"/>
    </widget>
    <widget class="QMenu" name="menuFerramentas">
     <property name="title">
@@ -163,7 +183,7 @@
   </action>
   <action name="actionSobre_o_Virtaus">
    <property name="text">
-    <string>&amp;About</string>
+    <string>&amp;About Virtaus</string>
    </property>
   </action>
   <action name="actionPrefer_ncias">
@@ -174,6 +194,11 @@
   <action name="actionCollections">
    <property name="text">
     <string>&amp;Collections</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About Qt</string>
    </property>
   </action>
  </widget>
@@ -195,6 +220,12 @@
    <class>ProductView</class>
    <extends>QWidget</extends>
    <header>diagram/product-view.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CollectionInfoView</class>
+   <extends>QWidget</extends>
+   <header>collection-info-view.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
@@ -298,6 +329,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAbout_Qt</sender>
+   <signal>triggered()</signal>
+   <receiver>VirtausWindow</receiver>
+   <slot>show_about_qt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>show_about()</slot>
@@ -305,5 +352,6 @@
   <slot>show_preferences()</slot>
   <slot>show_collection(Virtaus::Collection)</slot>
   <slot>show_home()</slot>
+  <slot>show_about_qt()</slot>
  </slots>
 </ui>

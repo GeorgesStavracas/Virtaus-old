@@ -1,8 +1,8 @@
 #include "virtaus-window.h"
 #include "ui_virtaus-window.h"
 
-VirtausWindow::VirtausWindow(QWidget *parent) :
-    QMainWindow(parent),
+VirtausWindow::VirtausWindow(VirtausApplication *app) :
+    QMainWindow(),
     ui(new Ui::VirtausWindow)
 {
     ui->setupUi(this);
@@ -10,10 +10,10 @@ VirtausWindow::VirtausWindow(QWidget *parent) :
     ui->mainStack->setVerticalMode(true);
     ui->mainStack->setSpeed(750);
 
-    Virtaus::DataReader *reader = new Virtaus::DataReader;
-    QList<Virtaus::Collection> *list = reader->loadData();
+    this->app = app;
+    this->app->loadData();
 
-    ui->collectionView->setCollectionList(list);
+    ui->collectionView->setCollectionList(this->app->getData());
 }
 
 VirtausWindow::~VirtausWindow()
@@ -26,6 +26,11 @@ VirtausWindow::show_about() {
     AboutDialog *about = new AboutDialog(this);
     about->deleteLater();
     about->exec();
+}
+
+void
+VirtausWindow::show_about_qt() {
+    this->app->aboutQt();
 }
 
 void
@@ -48,9 +53,9 @@ VirtausWindow::new_collection_wizard() {
 }
 
 void
-VirtausWindow::show_collection(Virtaus::Collection collection) {
+VirtausWindow::show_collection(Virtaus::Core::Collection* collection) {
 
-    ui->productView->setCollection(&collection);
+    ui->productView->setCollection(collection);
     ui->mainStack->slideInNext();
 
 }

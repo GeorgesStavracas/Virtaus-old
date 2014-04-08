@@ -4,9 +4,9 @@ VirtausApplication::VirtausApplication (int & argc, char ** argv) :
     QApplication(argc, argv)
 {
     this->window = new VirtausWindow(this);
-    this->reader = new Virtaus::DataReader;
-    this->loaded_data = new QList<Virtaus::Collection*>;
-    this->settings = Virtaus::Settings::getInstance();
+    this->reader = new Virtaus::Core::DataReader;
+    this->loaded_data = new QList<Virtaus::Core::Collection*>;
+    this->settings = Virtaus::Core::Settings::getInstance();
 
     this->settings->setFile(this->applicationDirPath().append("/config.ini"));
 }
@@ -35,7 +35,7 @@ VirtausApplication::loadData()
 
 }
 
-QList<Virtaus::Collection*>*
+QList<Virtaus::Core::Collection*>*
 VirtausApplication::getData()
 {
     return this->loaded_data;
