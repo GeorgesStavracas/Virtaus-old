@@ -28,7 +28,7 @@ class Virtaus::Core::Attribute : public QObject
     Q_OBJECT
 
 public:
-    explicit Attribute(Virtaus::Core::Core::Category* parent);
+    explicit Attribute(Virtaus::Core::Category* parent);
     ~Attribute();
 
     QString* getName();

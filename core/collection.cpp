@@ -1,6 +1,6 @@
 #include "collection.h"
 
-using namespace Virtaus::Core::Core;
+using namespace Virtaus::Core;
 
 
 
