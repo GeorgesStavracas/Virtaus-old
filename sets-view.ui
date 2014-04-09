@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SetsView</class>
+ <widget class="QWidget" name="SetsView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#collectionInfoButton {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_right.png);
+	text-align: left;
+	padding-left: 5px;
+}
+
+#collectionInfoButton:hover {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_hover_right.png);
+	text-align: left;
+	padding-left: 5px;
+}
+
+#collectionInfoButton:pressed {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_pressed_right.png);
+	text-align: left;
+	padding-left: 5px;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QPushButton" name="collectionInfoButton">
+     <property name="minimumSize">
+      <size>
+       <width>54</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/virtaus/images/resources/info.svg</normaloff>:/virtaus/images/resources/info.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="productManagerButton">
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+ <slots>
+  <signal>showInfo()</signal>
+  <signal>showProducts()</signal>
+  <slot>show_info()</slot>
+  <slot>show_products()</slot>
+ </slots>
+</ui>
