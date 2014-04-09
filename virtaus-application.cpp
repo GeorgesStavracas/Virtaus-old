@@ -6,6 +6,7 @@ VirtausApplication::VirtausApplication (int & argc, char ** argv) :
     this->window = new VirtausWindow(this);
     this->reader = new Virtaus::Core::DataReader;
     this->loaded_data = new QList<Virtaus::Core::Collection*>;
+    this->current = NULL;
     this->settings = Virtaus::Core::Settings::getInstance();
 
     this->settings->setFile(this->applicationDirPath().append("/config.ini"));
@@ -17,6 +18,18 @@ void
 VirtausApplication::showGUI()
 {
     this->window->showMaximized();
+}
+
+Virtaus::Core::Collection*
+VirtausApplication::getCurrent()
+{
+    return this->current;
+}
+
+void
+VirtausApplication::setCurrent(Virtaus::Core::Collection *collection)
+{
+    this->current = collection;
 }
 
 void

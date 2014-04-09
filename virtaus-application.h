@@ -34,6 +34,10 @@ public:
 
     QList<Virtaus::Core::Collection*>* getData();
 
+    Virtaus::Core::Collection* getCurrent();
+
+    void setCurrent(Virtaus::Core::Collection* collection);
+
 
 signals:
 
@@ -43,6 +47,8 @@ protected:
     VirtausWindow *window;
     Virtaus::Core::DataReader *reader;
     Virtaus::Core::Settings* settings;
+
+    Virtaus::Core::Collection* current;
 
     QList<Virtaus::Core::Collection*> *loaded_data;
 };
