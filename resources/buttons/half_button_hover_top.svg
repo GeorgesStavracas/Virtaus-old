@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="100"
+   height="52"
+   id="svg3302"
+   version="1.1"
+   inkscape:version="0.48.4 r"
+   sodipodi:docname="half_button_hover_top.svg"
+   inkscape:export-filename="C:\Users\Georges\Projetos\Virtaus\resources\buttons\half_button_hover_top.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs3304">
+    <filter
+       inkscape:collect="always"
+       id="filter3891"
+       x="-0.15300003"
+       width="1.3060001"
+       y="-0.076499991"
+       height="1.153"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.1675004"
+         id="feGaussianBlur3893" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="12.03"
+     inkscape:cx="50"
+     inkscape:cy="14.288016"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="745"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3307">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1000.3622)">
+    <path
+       id="path2989"
+       style="fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3891)"
+       d="m 33.999999,1018.3622 c 0,18.7777 -15.222316,34 -33.99999975,34 0,-21.2431 -10e-15,-32.0191 -10e-15,-68.00002 C 18.777683,984.36218 33.999999,999.58451 33.999999,1018.3622 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sccs"
+       transform="matrix(0,-1.4704339,1.4081423,0,-1384.7032,1054.9673)" />
+    <path
+       sodipodi:nodetypes="sccs"
+       inkscape:connector-curvature="0"
+       d="m 49.119676,1007.4397 c 24.85278,0 45.00001,20.1743 45.00001,45.0606 -28.11591,0 -42.37821,0 -90.00001,0 0,-24.8863 20.1473,-45.0606 45,-45.0606 z"
+       style="fill:#4e4e4e;fill-opacity:1;stroke:none"
+       id="path3761" />
+  </g>
+</svg>
