@@ -18,5 +18,17 @@
         <file>resources/info.svg</file>
         <file>resources/add.png</file>
         <file>resources/add.svg</file>
+        <file>resources/buttons/half_button_hover_bottom.png</file>
+        <file>resources/buttons/half_button_hover_bottom.svg</file>
+        <file>resources/buttons/half_button_hover_top.png</file>
+        <file>resources/buttons/half_button_hover_top.svg</file>
+        <file>resources/buttons/half_button_bottom.png</file>
+        <file>resources/buttons/half_button_bottom.svg</file>
+        <file>resources/buttons/half_button_pressed_bottom.png</file>
+        <file>resources/buttons/half_button_pressed_bottom.svg</file>
+        <file>resources/buttons/half_button_pressed_top.png</file>
+        <file>resources/buttons/half_button_pressed_top.svg</file>
+        <file>resources/buttons/half_button_top.png</file>
+        <file>resources/buttons/half_button_top.svg</file>
     </qresource>
 </RCC>

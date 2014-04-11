@@ -7,11 +7,12 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="100"
    height="52"
-   id="svg3302"
+   id="svg2990"
    version="1.1"
    inkscape:version="0.48.4 r"
    sodipodi:docname="half_button_hover_top.svg"
@@ -19,7 +20,7 @@
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
-     id="defs3304">
+     id="defs2992">
     <filter
        inkscape:collect="always"
        id="filter3891"
@@ -33,6 +34,27 @@
          stdDeviation="2.1675004"
          id="feGaussianBlur3893" />
     </filter>
+    <linearGradient
+       gradientTransform="matrix(0,1,-1,0,1052.0624,1000.4748)"
+       inkscape:collect="always"
+       xlink:href="#linearGradient3754"
+       id="linearGradient3760"
+       x1="6.8811355"
+       y1="1002.3622"
+       x2="51.941689"
+       y2="1002.3622"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient3754">
+      <stop
+         style="stop-color:#6e6e6e;stop-opacity:1;"
+         offset="0"
+         id="stop3756" />
+      <stop
+         style="stop-color:#787878;stop-opacity:1;"
+         offset="1"
+         id="stop3758" />
+    </linearGradient>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -41,9 +63,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="12.03"
-     inkscape:cx="50"
-     inkscape:cy="14.288016"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="53.753289"
+     inkscape:cy="22.974857"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -53,7 +75,7 @@
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
-     id="metadata3307">
+     id="metadata2995">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -75,12 +97,17 @@
        d="m 33.999999,1018.3622 c 0,18.7777 -15.222316,34 -33.99999975,34 0,-21.2431 -10e-15,-32.0191 -10e-15,-68.00002 C 18.777683,984.36218 33.999999,999.58451 33.999999,1018.3622 z"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="sccs"
-       transform="matrix(0,-1.4704339,1.4081423,0,-1384.7032,1054.9673)" />
+       transform="matrix(0,-1.4704339,1.4081423,0,-1384.1226,1054.8836)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        sodipodi:nodetypes="sccs"
        inkscape:connector-curvature="0"
-       d="m 49.119676,1007.4397 c 24.85278,0 45.00001,20.1743 45.00001,45.0606 -28.11591,0 -42.37821,0 -90.00001,0 0,-24.8863 20.1473,-45.0606 45,-45.0606 z"
-       style="fill:#4e4e4e;fill-opacity:1;stroke:none"
-       id="path3761" />
+       d="m 49.700279,1007.3559 c 24.85282,0 44.99997,20.1743 44.99997,45.0606 -28.11587,0 -42.37817,0 -89.99997,0 0,-24.8863 20.1473,-45.0606 45,-45.0606 z"
+       style="fill:url(#linearGradient3760);fill-opacity:1;stroke:none"
+       id="path3761"
+       inkscape:export-filename="C:\Users\Georges\Projetos\Virtaus\resources\buttons\path2989.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>
