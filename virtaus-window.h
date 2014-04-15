@@ -10,7 +10,7 @@
 #include "dialogs/preferences-dialog.h"
 #include "collection-view.h"
 #include "virtaus-application.h"
-#include "new-collection-wizard.h"
+#include "dialogs/wizards/new-collection-wizard.h"
 
 namespace Ui {
     class VirtausWindow;
@@ -26,7 +26,7 @@ public:
     explicit VirtausWindow(VirtausApplication *app);
     ~VirtausWindow();
 
-private slots:
+protected slots:
     void show_about();
     void show_about_qt();
     void new_collection_wizard();

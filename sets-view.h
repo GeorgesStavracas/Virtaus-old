@@ -18,10 +18,12 @@ public:
 protected slots:
     void show_info();
     void show_products();
+    void show_collections();
 
 signals:
     void showInfo();
     void showProducts();
+    void showCollections();
 
 private:
     Ui::SetsView *ui;

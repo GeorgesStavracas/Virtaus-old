@@ -14,7 +14,8 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#collectionInfoButton {
+   <string notr="true">/* Collection info button (left)*/
+#collectionInfoButton {
 	border-image: url(:/virtaus/images/resources/buttons/half_button_right.png);
 	text-align: left;
 	padding-left: 5px;
@@ -30,7 +31,44 @@
 	border-image: url(:/virtaus/images/resources/buttons/half_button_pressed_right.png);
 	text-align: left;
 	padding-left: 5px;
-}</string>
+}
+
+
+/* Collections button (top) */
+#collectionsButton {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_bottom.png);
+	text-align: center;
+}
+
+#collectionsButton:hover {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_hover_bottom.png);
+	text-align: center;
+}
+
+#collectionsButton:pressed {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_pressed_bottom.png);
+	text-align: center;
+}
+
+/* Categories button (right) */
+#categoriesButton {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_left.png);
+	text-align: right;
+	padding-right: 5px;
+}
+
+#categoriesButton:hover {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_hover_left.png);
+	text-align: right;
+	padding-right: 5px;
+}
+
+#categoriesButton:pressed {
+	border-image: url(:/virtaus/images/resources/buttons/half_button_pressed_left.png);
+	text-align: right;
+	padding-right: 5px;
+}
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -45,7 +83,68 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <item row="0" column="0">
+   <property name="spacing">
+    <number>20</number>
+   </property>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="collectionsButton">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>53</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <spacer name="hspacer2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1">
+    <spacer name="hspacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1" colspan="3">
+    <widget class="CoverArtWidget" name="cover" native="true"/>
+   </item>
+   <item row="2" column="1" colspan="3">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>53</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="0" rowspan="3">
     <widget class="QPushButton" name="collectionInfoButton">
      <property name="minimumSize">
       <size>
@@ -65,40 +164,69 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="2">
-    <widget class="QPushButton" name="productManagerButton">
-     <property name="text">
-      <string>PushButton</string>
+   <item row="0" column="4" rowspan="3">
+    <widget class="QPushButton" name="categoriesButton">
+     <property name="minimumSize">
+      <size>
+       <width>53</width>
+       <height>100</height>
+      </size>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CoverArtWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/cover-art-widget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>collectionInfoButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SetsView</receiver>
+   <slot>show_info()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>26</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>collectionsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SetsView</receiver>
+   <slot>show_collections()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>200</x>
+     <y>26</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <signal>showInfo()</signal>
   <signal>showProducts()</signal>
+  <signal>showCollections()</signal>
   <slot>show_info()</slot>
   <slot>show_products()</slot>
+  <slot>show_collections()</slot>
  </slots>
 </ui>

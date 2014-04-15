@@ -16,11 +16,14 @@ DiagramRow::DiagramRow(QWidget *parent) :
 DiagramRow::~DiagramRow()
 {
 
+    std::cout << "\nDeleting items...\n";
+
     QStandardItem* item;
 
     while ((item = this->model->takeItem(0)))
         delete item;
 
+    this->model->clear();
     delete this->model;
 
     delete ui;
@@ -42,25 +45,26 @@ DiagramRow::setSelectable(bool selectable) {
 }
 
 void
-DiagramRow::setCategory(Virtaus::Category *category) {
-    if (!category) return;
+DiagramRow::setAttribute(Virtaus::Core::Attribute* attribute) {
+    if (!attribute) return;
 
-    /* Clean any previously shown category */
+    /* Clean any previously shown attribute */
     QStandardItem* item;
 
     while ((item = this->model->takeItem(0)))
         delete item;
 
     this->model->clear();
+    this->current = attribute;
 
+    ui->categoryLabel->setText(*attribute->getName());
 
-    this->current = category;
+    QString collection_path = attribute->getParent()->getParent()->getInfo("path");
+    QString path = collection_path + *attribute->getParent()->getName() + "/" + *attribute->getName();
 
-    ui->categoryLabel->setText(*category->getName());
-
-    QString path = category->getParent()->getInfo("path") + "/" + *category->getName();
-
-    foreach (QString i, *category->getItemList()) {
+    //TODO: reimplement Virtaus::Attribute loading
+    /*
+    foreach (QString i, *attribute->getItemList()) {
         std::cout << "Loading path " << (path + "/" + i).toStdString() << "\n";
 
         QIcon* icon = new QIcon(path + "/" + i);
@@ -69,6 +73,7 @@ DiagramRow::setCategory(Virtaus::Category *category) {
         this->model->appendRow(item);
 
     }
+    */
 
     if (!this->selectable) {
         QIcon* icon = new QIcon (":/virtaus/images/resources/add.svg");
@@ -77,4 +82,9 @@ DiagramRow::setCategory(Virtaus::Category *category) {
     }
 
     ui->itemsView->setModel(this->model);
+}
+
+void
+DiagramRow::item_selected(QModelIndex index)  {
+
 }

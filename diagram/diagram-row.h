@@ -16,13 +16,20 @@ public:
     explicit DiagramRow(QWidget *parent = 0);
     ~DiagramRow();
 
-    void setCategory (Virtaus::Category* category);
+    void setAttribute(Virtaus::Core::Attribute* attribute);
     void setSelectable (bool selectable);
 
     bool isSelectable();
 
+signals:
+    void itemSelected (Virtaus::Core::Item* item);
+    void itemEdit (Virtaus::Core::Item* item);
+
+protected slots:
+    void item_selected (QModelIndex index);
+
 protected:
-    Virtaus::Category* current;
+    Virtaus::Core::Attribute* current;
     QStandardItemModel* model;
     bool selectable;
 

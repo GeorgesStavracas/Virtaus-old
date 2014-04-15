@@ -20,7 +20,7 @@ public:
 
 private:
     Ui::BasicInfoPage *ui;
-    Virtaus::DataReader *reader;
+    Virtaus::Core::DataReader *reader;
 };
 
 #endif // BASICINFOPAGE_H

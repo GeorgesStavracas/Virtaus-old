@@ -21,18 +21,18 @@ CollectionView::~CollectionView()
  * Setup the collection model.
  */
 void
-CollectionView::setCollectionList (QList<Virtaus::Collection>* list) {
+CollectionView::setCollectionList (QList<Virtaus::Core::Collection*>* list) {
     if (!list) return;
 
     this->collections = list;
 
     QStandardItemModel *model = new QStandardItemModel;
 
-    foreach (Virtaus::Collection collection, *list) {
+    foreach (Virtaus::Core::Collection* collection, *list) {
 
-        QIcon *icon = new QIcon (*collection.thumbnail);
+        QIcon *icon = new QIcon (*collection->thumbnail);
 
-        QStandardItem *item = new QStandardItem(*icon, collection.getInfo("name"));
+        QStandardItem *item = new QStandardItem(*icon, collection->getInfo("name"));
 
         model->appendRow(item);
     }
@@ -49,8 +49,10 @@ CollectionView::item_selected(QModelIndex index) {
      * the index.column() == 0 always. So we should
      * simply use index.row().
      */
-    Virtaus::Collection collection = this->collections->at(index.row());
+    Virtaus::Core::Collection* collection = this->collections->at(index.row());
     emit collectionSelected(collection);
+
+    qDebug() << "Collection" << collection->getInfo("name") << "selected";
 
 
 }

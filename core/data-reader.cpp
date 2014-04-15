@@ -233,7 +233,7 @@ DataReader::validateCollection(const QString &path)
     QDir* dir;
     QStringList entries;
 
-    collection_xml = false;
+    collection_xml = true;
     info_xml = false;
     dir = new QDir (path);
     entries = dir->entryList(QDir::Files);
@@ -273,7 +273,8 @@ DataReader::validateCollection(const QString &path)
                         QXmlStreamAttributes attribs = xml.attributes();
 
                         if (!(attribs.hasAttribute("width") &&
-                              attribs.hasAttribute("height")))
+                              attribs.hasAttribute("height") &&
+                              attribs.hasAttribute("name")))
                         {
                             valid = false;
                         }
@@ -362,13 +363,48 @@ DataReader::validateCollection(const QString &path)
             delete file;
         }
 
+        valid = true;
+
         /* Parse collection secondary data */
         if (str == "Info.xml")
         {
             info_xml = true;
 
-        }
+            QFile *file = new QFile(path + "/" + str);
+            file->open(QIODevice::ReadOnly | QIODevice::Text);
 
+            QXmlStreamReader xml(file);
+
+            while (!xml.atEnd() && !xml.hasError()) {
+
+                if (xml.tokenType() == QXmlStreamReader::StartElement) {
+
+                    if (xml.name().toString() != "field" &&
+                        xml.name().toString() != "info")
+                    {
+                        valid = false;
+                    }
+
+                    if(xml.name().toString() == "field")
+                    {
+                        QXmlStreamAttributes attribs = xml.attributes();
+
+                        if (!attribs.hasAttribute("name"))
+                            valid = false;
+                    }
+
+                    if (!valid)
+                    {
+                        file->close();
+                        delete file;
+                        return false;
+                    }
+
+                }
+
+                xml.readNext();
+            }
+        }
     }
 
     delete dir;
@@ -909,13 +945,8 @@ DataReader::loadCollectionInfo(Collection *collection)
 
                 xml.readNext();
 
-                if (xml.tokenType() == QXmlStreamReader::Characters) {
-
+                if (xml.tokenType() == QXmlStreamReader::Characters)
                     collection->setInfo(field, xml.text().toString());
-
-                    qDebug() << "Adding field " << field << ": \n" << xml.text().toString();
-                }
-
             }
 
         }

@@ -395,7 +395,7 @@
   <customwidget>
    <class>AnimatedStackedWidget</class>
    <extends>QStackedWidget</extends>
-   <header>animated-stacked-widget.h</header>
+   <header>widgets/animated-stacked-widget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

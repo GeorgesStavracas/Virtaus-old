@@ -17,16 +17,16 @@ public:
     explicit CollectionView(QWidget *parent = 0);
     ~CollectionView();
 
-    void setCollectionList (QList<Virtaus::Collection>* list);
+    void setCollectionList (QList<Virtaus::Core::Collection*>* list);
 
 signals:
-    void collectionSelected(Virtaus::Collection collection);
+    void collectionSelected(Virtaus::Core::Collection* collection);
 
 protected slots:
     void item_selected(QModelIndex index);
 
 private:
-    QList<Virtaus::Collection>* collections;
+    QList<Virtaus::Core::Collection*>* collections;
     Ui::CollectionView *ui;
 };
 

@@ -1,9 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>CollectionDataPage</class>
- <widget name="CollectionDataPage" class="QWidget">
+ <widget class="QWidget" name="CollectionDataPage">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,7 +13,135 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">AnimatedStackedWidget {
+	color: rgb(238, 238, 238);
+	background-color: rgb(53, 53, 55);
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="AnimatedStackedWidget" name="stack">
+     <widget class="QWidget" name="collectionInfoPage">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="CollectionInfoView" name="collectionInfoView" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="setsViewPage">
+      <layout class="QGridLayout" name="gridLayout_4">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="SetsView" name="setsView" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="productManagerPage"/>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <pixmapfunction/>
- <connections/>
+ <customwidgets>
+  <customwidget>
+   <class>AnimatedStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>widgets/animated-stacked-widget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CollectionInfoView</class>
+   <extends>QWidget</extends>
+   <header>collection-info-view.h</header>
+   <container>1</container>
+   <slots>
+    <signal>goBack()</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>SetsView</class>
+   <extends>QWidget</extends>
+   <header>sets-view.h</header>
+   <container>1</container>
+   <slots>
+    <signal>showInfo()</signal>
+    <signal>showProducts()</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>collectionInfoView</sender>
+   <signal>goBack()</signal>
+   <receiver>CollectionDataPage</receiver>
+   <slot>go_sets()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>setsView</sender>
+   <signal>showInfo()</signal>
+   <receiver>CollectionDataPage</receiver>
+   <slot>go_info()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>go_sets()</slot>
+  <slot>go_info()</slot>
+  <slot>go_manager()</slot>
+ </slots>
 </ui>

@@ -27,6 +27,12 @@ public:
     bool saveCollection(Virtaus::Core::Collection* collection);
     bool saveItem(Virtaus::Core::Item* item);
 
+    /* Creation methods */
+    bool createAttribute(Virtaus::Core::Attribute* attribute);
+    bool createCategory(Virtaus::Core::Category* category);
+    bool createCollection(Virtaus::Core::Collection* collection);
+    bool createItem(Virtaus::Core::Item* item);
+
     /* Appending methods */
     bool appendSet(Virtaus::Core::Set* set);
     bool appendProduct(Virtaus::Core::Product* product);
@@ -38,6 +44,11 @@ public:
     bool removeItem(Virtaus::Core::Item* item);
     bool removeSet(Virtaus::Core::Set* set);
     bool removeProduct(Virtaus::Core::Product* product);
+
+signals:
+    void fileCreated(QString file);
+    void fileRemoved(QString file);
+    void fileUpdated(QString file);
 };
 
 #endif // DATAWRITER_H

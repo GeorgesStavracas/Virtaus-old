@@ -3,9 +3,13 @@
 int main(int argc, char *argv[])
 {
 
-    VirtausApplication app(argc, argv);
 
-    app.showGUI();
 
-    return app.exec();
+    VirtausApplication* app;
+
+    app = VirtausApplication::getInstance(argc, argv);
+
+    app->showGUI();
+
+    return app->exec();
 }

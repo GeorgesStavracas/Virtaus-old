@@ -13,17 +13,17 @@ class DiagramView : public QWidget
 public:
     explicit DiagramView(QWidget *parent = 0);
 
-    void setCollection (Virtaus::Collection* collection);
+    void setCategory (Virtaus::Core::Category* category);
 
 signals:
-    void itemEdit(Virtaus::Item* item);
-    void itemSelected (Virtaus::Item* item);
+    void itemEdit(Virtaus::Core::Item* item);
+    void itemSelected (Virtaus::Core::Item* item);
 
-public slots:
-
+protected slots:
+    void item_selected();
 
 protected:
-    Virtaus::Collection* current;
+    Virtaus::Core::Category* current;
 };
 
 #endif // DIAGRAMVIEW_H

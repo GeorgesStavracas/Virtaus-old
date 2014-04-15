@@ -5,6 +5,7 @@
 #include <QtWidgets>
 #include <QtCore>
 #include <QtGui>
+#include "widgets/image-graphic-item.h"
 
 namespace Ui {
 class CoverArtWidget;
@@ -22,9 +23,17 @@ public:
 
     //QAbstractListModel getModel();
 
+signals:
+    void indexChanged(int index);
+    void indexRemove(int index);
+
 private:
+    void order_widgets();
+
     Ui::CoverArtWidget *ui;
     QGraphicsScene* scene;
+    QList<QGraphicsItem*>* itemList;
+    int current;
     //QAbstractListModel *model;
 };
 

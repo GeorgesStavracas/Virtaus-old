@@ -22,26 +22,30 @@ VirtausWindow::~VirtausWindow()
 }
 
 void
-VirtausWindow::show_about() {
+VirtausWindow::show_about()
+{
     AboutDialog *about = new AboutDialog(this);
     about->deleteLater();
     about->exec();
 }
 
 void
-VirtausWindow::show_about_qt() {
+VirtausWindow::show_about_qt()
+{
     this->app->aboutQt();
 }
 
 void
-VirtausWindow::show_preferences() {
+VirtausWindow::show_preferences()
+{
     PreferencesDialog *dialog = new PreferencesDialog(this);
     dialog->deleteLater();
     dialog->exec();
 }
 
 void
-VirtausWindow::new_collection_wizard() {
+VirtausWindow::new_collection_wizard()
+{
     NewCollectionWizard *wizard = new NewCollectionWizard;
 
 #ifdef __APPLE__
@@ -53,14 +57,14 @@ VirtausWindow::new_collection_wizard() {
 }
 
 void
-VirtausWindow::show_collection(Virtaus::Core::Collection* collection) {
-
-    ui->productView->setCollection(collection);
-    ui->mainStack->slideInNext();
-
+VirtausWindow::show_collection(Virtaus::Core::Collection* collection)
+{
+    ui->collectionDataPage->reset();
+    ui->mainStack->slideInIdx(1);
 }
 
 void
-VirtausWindow::show_home() {
-    ui->mainStack->slideInPrev();
+VirtausWindow::show_home()
+{
+    ui->mainStack->slideInIdx(0);
 }

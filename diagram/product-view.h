@@ -16,7 +16,7 @@ public:
     explicit ProductView(QWidget *parent = 0);
     ~ProductView();
 
-    void setCollection (Virtaus::Collection* collection);
+    void setCollection (Virtaus::Core::Collection* collection);
 
 protected slots:
     void show_diagram_view();

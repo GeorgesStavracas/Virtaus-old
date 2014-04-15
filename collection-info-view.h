@@ -2,6 +2,7 @@
 #define COLLECTIONINFOVIEW_H
 
 #include <QWidget>
+#include "virtaus-application.h"
 
 namespace Ui {
 class CollectionInfoView;
@@ -15,8 +16,17 @@ public:
     explicit CollectionInfoView(QWidget *parent = 0);
     ~CollectionInfoView();
 
+    void setApplication(VirtausApplication* app);
+
+protected slots:
+    void back();
+
+signals:
+    void goBack();
+
 private:
     Ui::CollectionInfoView *ui;
+    VirtausApplication* app;
 };
 
 #endif // COLLECTIONINFOVIEW_H

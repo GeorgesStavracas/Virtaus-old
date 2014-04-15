@@ -172,4 +172,7 @@ QListView::item:selected {
  </widget>
  <resources/>
  <connections/>
+ <slots>
+  <slot>item_selected(QModelIndex)</slot>
+ </slots>
 </ui>

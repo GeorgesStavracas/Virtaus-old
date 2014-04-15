@@ -8,11 +8,11 @@ BasicInfoPage::BasicInfoPage(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->reader = new Virtaus::DataReader;
+    this->reader = new Virtaus::Core::DataReader;
 
     registerField("name*", ui->nameEdit);
     registerField("author*", ui->authorEdit);
-    registerField("mail*", ui->mailEdit);
+    registerField("email*", ui->mailEdit);
 
 }
 
@@ -21,7 +21,7 @@ BasicInfoPage::isComplete() const {
 
     QRegExp *exp = new QRegExp("[\\\\/<>\\=\\{\\}]");
     bool v_author = false, v_name = false, v_mail = false;
-    QDir *dir = new QDir(*this->reader->getDir());
+    QDir *dir = new QDir(QDir::homePath()+"/"+tr("My Collections"));
 
 
 

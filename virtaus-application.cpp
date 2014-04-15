@@ -1,5 +1,16 @@
 #include "virtaus-application.h"
 
+VirtausApplication* VirtausApplication::instance = NULL;
+
+VirtausApplication*
+VirtausApplication::getInstance(int argc, char ** argv)
+{
+    if (!instance)
+        instance = new VirtausApplication(argc, argv);
+
+    return instance;
+}
+
 VirtausApplication::VirtausApplication (int & argc, char ** argv) :
     QApplication(argc, argv)
 {
@@ -27,9 +38,20 @@ VirtausApplication::getCurrent()
 }
 
 void
+VirtausApplication::setView(Virtaus::View::Views view)
+{
+    if (current_view != view)
+        this->view(view);
+
+    this->current_view = view;
+}
+
+void
 VirtausApplication::setCurrent(Virtaus::Core::Collection *collection)
 {
     this->current = collection;
+
+    emit this->collectionSelected(collection);
 }
 
 void

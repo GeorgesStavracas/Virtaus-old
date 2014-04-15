@@ -32,9 +32,14 @@ ProductView::show_info_view(){
 }
 
 void
-ProductView::setCollection (Virtaus::Collection* collection) {
+ProductView::setCollection (Virtaus::Core::Collection* collection) {
 
     ui->stackedWidget->setCurrentIndex(1);
 
-    ui->diagramView->setCollection(collection);
+    //ui->diagramView->setCollection(collection);
+}
+
+void
+DiagramView::item_selected() {
+
 }

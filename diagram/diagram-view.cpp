@@ -13,20 +13,23 @@ DiagramView::DiagramView(QWidget *parent) :
 }
 
 void
-DiagramView::setCollection (Virtaus::Collection* collection) {
-    if (!collection) return;
+DiagramView::setCategory (Virtaus::Core::Category* category) {
+    if (!category) return;
 
-    this->current = collection;
+    this->current = category;
 
     // Remove previous items
     QLayoutItem *item;
-    while((item = this->layout()->takeAt(0)))
+    while((item = this->layout()->takeAt(0))) {
+        delete item->widget();
         delete item;
+    }
 
+    Virtaus::Core::DataReader* reader = new Virtaus::Core::DataReader;
 
-    Virtaus::DataReader* reader = new Virtaus::DataReader;
-
-    foreach (QString path, *collection->getCategories()) {
+    // TODO: reimplement Virtaus::Category loading
+    /*
+    foreach (QString path, *category->getAttributeList()) {
         //std::cout << "Loading path: " << collection->getInfo("path").toStdString() << "/" << path.toStdString() << "\n";
 
         if (!reader->isValidCategory(collection->getInfo("path") + "/" + path))
@@ -37,13 +40,14 @@ DiagramView::setCollection (Virtaus::Collection* collection) {
         category->setName(path);
 
         DiagramRow* row = new DiagramRow(this);
-        row->setCategory(category);
+        row->setAttribute(category);
 
         this->layout()->addWidget(row);
         this->layout()->setAlignment(row, Qt::AlignTop);
     }
 
     this->layout()->addItem(new QSpacerItem(0, 10, QSizePolicy::Expanding, QSizePolicy::Expanding));
+    */
 
     delete reader;
 }

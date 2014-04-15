@@ -134,7 +134,7 @@ CollectionView QListView::item:selected {
   </connection>
  </connections>
  <slots>
-  <signal>collectionSelected(Virtaus::Collection)</signal>
+  <signal>collectionSelected(Virtaus::Core::Collection)</signal>
   <slot>item_selected(QModelIndex)</slot>
  </slots>
 </ui>
