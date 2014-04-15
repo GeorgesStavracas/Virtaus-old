@@ -14,7 +14,6 @@ VirtausApplication::getInstance(int argc, char ** argv)
 VirtausApplication::VirtausApplication (int & argc, char ** argv) :
     QApplication(argc, argv)
 {
-    this->window = new VirtausWindow(this);
     this->reader = new Virtaus::Core::DataReader;
     this->loaded_data = new QList<Virtaus::Core::Collection*>;
     this->current = NULL;
@@ -28,6 +27,7 @@ VirtausApplication::VirtausApplication (int & argc, char ** argv) :
 void
 VirtausApplication::showGUI()
 {
+    this->window = new VirtausWindow(this);
     this->window->showMaximized();
 }
 
