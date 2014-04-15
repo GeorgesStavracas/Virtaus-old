@@ -98,50 +98,11 @@
    <extends>QWidget</extends>
    <header>sets-view.h</header>
    <container>1</container>
-   <slots>
-    <signal>showInfo()</signal>
-    <signal>showProducts()</signal>
-   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>collectionInfoView</sender>
-   <signal>goBack()</signal>
-   <receiver>CollectionDataPage</receiver>
-   <slot>go_sets()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>199</x>
-     <y>149</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>199</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>setsView</sender>
-   <signal>showInfo()</signal>
-   <receiver>CollectionDataPage</receiver>
-   <slot>go_info()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>199</x>
-     <y>149</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>199</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
-  <slot>go_sets()</slot>
-  <slot>go_info()</slot>
-  <slot>go_manager()</slot>
+  <slot>set_view(Virtaus::View::Views)</slot>
  </slots>
 </ui>

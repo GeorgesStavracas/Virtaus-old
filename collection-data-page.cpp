@@ -8,6 +8,9 @@ CollectionDataPage::CollectionDataPage(QWidget *parent) :
     ui->setupUi(this);
 
     ui->stack->setCurrentIndex(1);
+
+    VirtausApplication* app = VirtausApplication::getInstance();
+    QObject::connect(app, SIGNAL(view(Virtaus::View::Views)), this, SLOT(set_view(Virtaus::View::Views)));
 }
 
 CollectionDataPage::~CollectionDataPage()
@@ -17,21 +20,24 @@ CollectionDataPage::~CollectionDataPage()
 
 
 void
-CollectionDataPage::go_info()
+CollectionDataPage::set_view(Virtaus::View::Views view)
 {
-    ui->stack->slideInIdx(0);
-}
+    switch(view) {
+    case Virtaus::View::SET_VIEW:
+        ui->stack->slideInIdx(1);
+        break;
 
-void
-CollectionDataPage::go_manager()
-{
-    ui->stack->slideInIdx(2);
-}
+    case Virtaus::View::COLLECTION_INFO_VIEW:
+        ui->stack->slideInIdx(0);
+        break;
 
-void
-CollectionDataPage::go_sets()
-{
-    ui->stack->slideInIdx(1);
+    case Virtaus::View::CATEGORY_VIEW:
+        ui->stack->slideInIdx(1);
+        break;
+
+    default:
+        break;
+    }
 }
 
 void

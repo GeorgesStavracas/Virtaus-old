@@ -2,6 +2,7 @@
 #define COLLECTIONDATAPAGE_H
 
 #include <QWidget>
+#include "virtaus-application.h"
 
 namespace Ui {
 class CollectionDataPage;
@@ -18,9 +19,7 @@ public:
     void reset();
 
 protected slots:
-    void go_info();
-    void go_manager();
-    void go_sets();
+    void set_view(Virtaus::View::Views view);
 
 private:
     Ui::CollectionDataPage *ui;
