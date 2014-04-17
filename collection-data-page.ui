@@ -72,7 +72,25 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="productManagerPage"/>
+     <widget class="QWidget" name="categoriesPage">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="CategoryView" name="categoriesView" native="true"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -97,6 +115,12 @@
    <class>SetsView</class>
    <extends>QWidget</extends>
    <header>sets-view.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CategoryView</class>
+   <extends>QWidget</extends>
+   <header>category-view.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

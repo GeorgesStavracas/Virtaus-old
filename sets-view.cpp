@@ -6,6 +6,11 @@ SetsView::SetsView(QWidget *parent) :
     ui(new Ui::SetsView)
 {
     ui->setupUi(this);
+
+    VirtausApplication* app = VirtausApplication::getInstance();
+
+    QObject::connect(app, SIGNAL(collectionSelected(Virtaus::Core::Collection*)),
+                     this, SLOT(prepare_model(Virtaus::Core::Collection*)));
 }
 
 SetsView::~SetsView()
@@ -17,19 +22,42 @@ SetsView::~SetsView()
 void
 SetsView::show_info()
 {
-    emit showInfo();
-}
+    VirtausApplication* app = VirtausApplication::getInstance();
 
-void
-SetsView::show_products()
-{
-    emit showProducts();
+    app->setView(Virtaus::View::COLLECTION_INFO_VIEW);
 }
 
 void
 SetsView::show_collections()
 {
-    emit showCollections();
-    for (int i = 0; i < 10000; i++)
-        QImage* img = new QImage("C:/Usuários/Georges/Imagens/Ico e yorda.jpg");
+    VirtausApplication* app = VirtausApplication::getInstance();
+
+    app->setView(Virtaus::View::COLLECTION_VIEW);
+    app->setCurrent(NULL);
+}
+
+void
+SetsView::show_categories()
+{
+    VirtausApplication* app = VirtausApplication::getInstance();
+
+    app->setView(Virtaus::View::CATEGORY_VIEW);
+}
+
+void
+SetsView::prepare_model(Virtaus::Core::Collection* c)
+{
+    if(!c) return;
+
+    QStandardItemModel *model = new QStandardItemModel;
+
+    foreach (Virtaus::Core::Set* set, c->getSets()->values()) {
+
+        QIcon *icon = new QIcon (":/virtaus/images/resources/no_thumbnail.svg");
+        QStandardItem *item = new QStandardItem(*icon, *set->getName());
+
+        model->appendRow(item);
+    }
+
+    ui->cover->setModel(model);
 }

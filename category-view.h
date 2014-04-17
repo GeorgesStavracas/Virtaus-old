@@ -2,6 +2,7 @@
 #define CATEGORYVIEW_H
 
 #include <QWidget>
+#include "virtaus-application.h"
 
 namespace Ui {
 class CategoryView;
@@ -14,6 +15,9 @@ class CategoryView : public QWidget
 public:
     explicit CategoryView(QWidget *parent = 0);
     ~CategoryView();
+
+protected slots:
+    void sets_view();
 
 private:
     Ui::CategoryView *ui;

@@ -12,3 +12,11 @@ CategoryView::~CategoryView()
 {
     delete ui;
 }
+
+void
+CategoryView::sets_view()
+{
+    VirtausApplication* app = VirtausApplication::getInstance();
+
+    app->setView(Virtaus::View::SET_VIEW);
+}

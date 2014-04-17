@@ -34,6 +34,13 @@ CollectionInfoView::CollectionInfoView(QWidget *parent) :
     this->setTabOrder(ui->productsEdit, ui->qualitiesEdit);
 
     ui->featuresEdit->setFocus();
+
+    VirtausApplication* app = VirtausApplication::getInstance();
+
+    QObject::connect(app, SIGNAL(view(Virtaus::View::Views)), this, SLOT(view_focus(Virtaus::View::Views)));
+
+    QObject::connect(app, SIGNAL(collectionSelected(Virtaus::Core::Collection*)),
+                        this, SLOT(collection_selected(Virtaus::Core::Collection*)));
 }
 
 void
@@ -50,5 +57,23 @@ CollectionInfoView::~CollectionInfoView()
 void
 CollectionInfoView::back()
 {
-    emit goBack();
+    VirtausApplication* app = VirtausApplication::getInstance();
+
+    app->setView(Virtaus::View::SET_VIEW);
+}
+
+void
+CollectionInfoView::view_focus(Virtaus::View::Views view)
+{
+    if (view == Virtaus::View::COLLECTION_INFO_VIEW)
+        ui->featuresEdit->setFocus();
+}
+
+void
+CollectionInfoView::collection_selected(Virtaus::Core::Collection* c)
+{
+    if (!c)
+        return;
+
+    ui->featuresEdit->setPlainText(c->getInfo("product-features"));
 }

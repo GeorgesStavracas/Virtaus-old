@@ -19,11 +19,15 @@ public:
 
     void initializePage();
 
+    int nextId() const {return (!success ? 4 : 5);}
+
 protected slots:
     void file_created(QString path);
 
 private:
     Ui::CreateCollectionPage *ui;
+
+    bool success;
 };
 
 #endif // CREATECOLLECTIONPAGE_H

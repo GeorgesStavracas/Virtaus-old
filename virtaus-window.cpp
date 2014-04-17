@@ -13,6 +13,8 @@ VirtausWindow::VirtausWindow(VirtausApplication *app) :
     this->app = app;
     this->app->loadData();
 
+    QObject::connect(this->app, SIGNAL(view(Virtaus::View::Views)), this, SLOT(show_view(Virtaus::View::Views)));
+
     ui->collectionView->setCollectionList(this->app->getData());
 }
 
@@ -57,10 +59,21 @@ VirtausWindow::new_collection_wizard()
 }
 
 void
-VirtausWindow::show_collection(Virtaus::Core::Collection* collection)
+VirtausWindow::show_view(Virtaus::View::Views view)
 {
-    ui->collectionDataPage->reset();
-    ui->mainStack->slideInIdx(1);
+    switch (view)
+    {
+    case Virtaus::View::COLLECTION_VIEW:
+        ui->mainStack->slideInIdx(0);
+        break;
+
+    case Virtaus::View::SET_VIEW:
+        ui->mainStack->slideInIdx(1);
+        break;
+
+    default:
+        break;
+    }
 }
 
 void

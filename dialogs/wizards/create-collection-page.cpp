@@ -8,6 +8,7 @@ CreateCollectionPage::CreateCollectionPage(QWidget *parent) :
     ui(new Ui::CreateCollectionPage)
 {
     ui->setupUi(this);
+    this->success = false;
 }
 
 CreateCollectionPage::~CreateCollectionPage()
@@ -30,9 +31,10 @@ CreateCollectionPage::initializePage()
 
     Virtaus::Core::DataWriter* writer = new Virtaus::Core::DataWriter;
     QObject::connect(writer, SIGNAL(fileCreated(QString)), this, SLOT(file_created(QString)));
-    bool success = writer->createCollection(collection);
+    success = writer->createCollection(collection);
 
-
+    if (success)
+        setFinalPage(true);
 }
 
 void

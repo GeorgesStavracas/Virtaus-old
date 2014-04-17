@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QStandardItem>
 #include "core/collection.h"
+#include "virtaus-application.h"
+#include "core/types.h"
 
 namespace Ui {
 class CollectionView;

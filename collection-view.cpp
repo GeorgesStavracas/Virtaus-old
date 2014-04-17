@@ -50,7 +50,14 @@ CollectionView::item_selected(QModelIndex index) {
      * simply use index.row().
      */
     Virtaus::Core::Collection* collection = this->collections->at(index.row());
-    emit collectionSelected(collection);
+
+    VirtausApplication* app = VirtausApplication::getInstance();
+
+    app->setCurrent(collection);
+
+    app->setView(Virtaus::View::SET_VIEW);
+
+    //emit collectionSelected(collection);
 
     qDebug() << "Collection" << collection->getInfo("name") << "selected";
 

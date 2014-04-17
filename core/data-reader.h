@@ -33,7 +33,6 @@ public:
         bool hasItem (const QString& path, const QString& item);
         bool hasProduct (const QString& path, const QString& product);
 
-protected:
         /* Loading methods */
         Virtaus::Core::Attribute* loadAttribute (const QString& path, Virtaus::Core::Category* parent);
         Virtaus::Core::Category* loadCategory (const QString& path, Virtaus::Core::Collection* parent);

@@ -3,9 +3,12 @@
 
 #include <QWidget>
 #include <QtWidgets>
+#include <QTransform>
+#include <QRegion>
 #include <QtCore>
 #include <QtGui>
-#include "widgets/image-graphic-item.h"
+#include "widgets/cover-art-item.h"
+#include "widgets/cover-art-scene.h"
 
 namespace Ui {
 class CoverArtWidget;
@@ -19,22 +22,35 @@ public:
     explicit CoverArtWidget(QWidget *parent = 0);
     ~CoverArtWidget();
 
-    //void setModel (QAbstractListModel model);
+    void setModel (QStandardItemModel *list);
 
-    //QAbstractListModel getModel();
+    QStandardItemModel* getModel();
+
+protected slots:
+    void selection_changed(int index);
+    void animationFinished();
 
 signals:
     void indexChanged(int index);
     void indexRemove(int index);
 
+
+protected:
+    void resizeEvent(QResizeEvent* event);
+    void slideTo(int index);
+
 private:
-    void order_widgets();
+    void place_widgets();
 
     Ui::CoverArtWidget *ui;
-    QGraphicsScene* scene;
-    QList<QGraphicsItem*>* itemList;
-    int current;
-    //QAbstractListModel *model;
+    CoverArtScene* scene;
+    QList<CoverArtItem*>* itemList;
+
+    int speed;
+    int stack_move;
+    int center_padding;
+
+    QStandardItemModel *model;
 };
 
 #endif // COVERARTWIDGET_H

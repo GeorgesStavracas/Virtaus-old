@@ -10,7 +10,10 @@ CollectionDataPage::CollectionDataPage(QWidget *parent) :
     ui->stack->setCurrentIndex(1);
 
     VirtausApplication* app = VirtausApplication::getInstance();
-    QObject::connect(app, SIGNAL(view(Virtaus::View::Views)), this, SLOT(set_view(Virtaus::View::Views)));
+    QObject::connect(app, SIGNAL(view(Virtaus::View::Views)),
+                     this, SLOT(set_view(Virtaus::View::Views)));
+    QObject::connect(app, SIGNAL(collectionSelected(Virtaus::Core::Collection*)),
+                     this, SLOT(prepare_model(Virtaus::Core::Collection*)));
 }
 
 CollectionDataPage::~CollectionDataPage()
@@ -32,7 +35,7 @@ CollectionDataPage::set_view(Virtaus::View::Views view)
         break;
 
     case Virtaus::View::CATEGORY_VIEW:
-        ui->stack->slideInIdx(1);
+        ui->stack->slideInIdx(2);
         break;
 
     default:

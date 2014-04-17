@@ -2,6 +2,7 @@
 #define SETSVIEW_H
 
 #include <QWidget>
+#include "virtaus-application.h"
 
 namespace Ui {
 class SetsView;
@@ -17,13 +18,9 @@ public:
 
 protected slots:
     void show_info();
-    void show_products();
     void show_collections();
-
-signals:
-    void showInfo();
-    void showProducts();
-    void showCollections();
+    void show_categories();
+    void prepare_model(Virtaus::Core::Collection* c);
 
 private:
     Ui::SetsView *ui;

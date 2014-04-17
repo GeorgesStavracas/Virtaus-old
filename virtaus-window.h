@@ -11,6 +11,7 @@
 #include "collection-view.h"
 #include "virtaus-application.h"
 #include "dialogs/wizards/new-collection-wizard.h"
+#include "core/types.h"
 
 namespace Ui {
     class VirtausWindow;
@@ -32,7 +33,7 @@ protected slots:
     void new_collection_wizard();
     void show_preferences();
     void show_home();
-    void show_collection(Virtaus::Core::Collection* collection);
+    void show_view(Virtaus::View::Views view);
 
 private:
     Ui::VirtausWindow *ui;

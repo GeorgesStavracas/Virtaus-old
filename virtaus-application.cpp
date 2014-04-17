@@ -20,6 +20,11 @@ VirtausApplication::VirtausApplication (int & argc, char ** argv) :
     this->settings = Virtaus::Core::Settings::getInstance();
 
     this->settings->setFile(this->applicationDirPath().append("/config.ini"));
+
+    this->monitor = new QFileSystemWatcher(this);
+    this->monitor->addPath(QDir::homePath()+"/"+tr("My Collections"));
+
+    QObject::connect(monitor, SIGNAL(directoryChanged(QString)), this, SLOT(fsUpdate(QString)));
 }
 
 
@@ -35,6 +40,53 @@ Virtaus::Core::Collection*
 VirtausApplication::getCurrent()
 {
     return this->current;
+}
+
+void
+VirtausApplication::fsUpdate(const QString &path)
+{
+    QDir* dir = new QDir(path);
+
+    foreach (const QString & sub, dir->entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+    {
+        QString final_path = path + "/" + sub;
+
+        /* Directory added */
+        if (dir->entryList(QDir::Dirs | QDir::NoDotAndDotDot).size() > loaded_data->size())
+        {
+            Virtaus::Core::Collection *col, *new_collection;
+
+            bool contains = false;
+
+            for (int i = 0; i < loaded_data->size(); i++)
+            {
+                col = loaded_data->at(i);
+
+                if (col->getInfo("path") != sub)
+                    continue;
+
+                contains = true;
+                break;
+            }
+
+
+            if (!contains)
+            {
+                if (reader->validateCollection(final_path))
+                {
+                    new_collection = reader->loadCollection(final_path);
+                    loaded_data->append(new_collection);
+                    //emit update()
+                }
+            }
+        }
+
+        /* Directory removed */
+        if (dir->entryList(QDir::Dirs | QDir::NoDotAndDotDot).size() < loaded_data->size())
+        {
+            /* TODO */
+        }
+    }
 }
 
 void
@@ -64,7 +116,6 @@ VirtausApplication::loadData()
 
     /* Load the main list */
     this->loaded_data = this->reader->loadData(dir->absolutePath());
-
 
     delete dir;
 

@@ -20,6 +20,8 @@ public:
 
 protected slots:
     void back();
+    void view_focus(Virtaus::View::Views view);
+    void collection_selected(Virtaus::Core::Collection* c);
 
 signals:
     void goBack();

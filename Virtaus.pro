@@ -26,8 +26,9 @@ SOURCES += main.cpp\
     collection-data-page.cpp \
     widgets/cover-art-widget.cpp \
     dialogs/wizards/create-collection-page.cpp \
-    widgets/image-graphic-item.cpp \
-    widgets/cover-art-scene.cpp
+    widgets/cover-art-scene.cpp \
+    widgets/cover-art-item.cpp \
+    category-view.cpp
 
 HEADERS  += virtaus-window.h \
     collection-view.h \
@@ -50,8 +51,9 @@ HEADERS  += virtaus-window.h \
     core/types.h \
     widgets/cover-art-widget.h \
     dialogs/wizards/create-collection-page.h \
-    widgets/image-graphic-item.h \
-    widgets/cover-art-scene.h
+    widgets/cover-art-scene.h \
+    widgets/cover-art-item.h \
+    category-view.h
 
 FORMS    += virtaus-window.ui \
     collection-view.ui \
@@ -65,7 +67,8 @@ FORMS    += virtaus-window.ui \
     sets-view.ui \
     collection-data-page.ui \
     widgets/cover-art-widget.ui \
-    dialogs/wizards/create-collection-page.ui
+    dialogs/wizards/create-collection-page.ui \
+    category-view.ui
 
 TRANSLATIONS += \
     languages/virtaus_pt.tr\

@@ -48,7 +48,8 @@ signals:
     void collectionSelected(Virtaus::Core::Collection* c);
     void view(Virtaus::View::Views view);
 
-public slots:
+protected slots:
+    void fsUpdate(const QString& path);
 
 protected:
     explicit VirtausApplication (int & argc, char ** argv);
@@ -57,6 +58,7 @@ protected:
     VirtausWindow *window;
     Virtaus::Core::DataReader *reader;
     Virtaus::Core::Settings* settings;
+    QFileSystemWatcher* monitor;
     Virtaus::View::Views current_view;
 
     Virtaus::Core::Collection* current;

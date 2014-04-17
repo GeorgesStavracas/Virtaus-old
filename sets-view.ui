@@ -38,16 +38,19 @@
 #collectionsButton {
 	border-image: url(:/virtaus/images/resources/buttons/half_button_bottom.png);
 	text-align: center;
+	padding-bottom: 13px;
 }
 
 #collectionsButton:hover {
 	border-image: url(:/virtaus/images/resources/buttons/half_button_hover_bottom.png);
 	text-align: center;
+	padding-bottom: 13px;
 }
 
 #collectionsButton:pressed {
 	border-image: url(:/virtaus/images/resources/buttons/half_button_pressed_bottom.png);
 	text-align: center;
+	padding-bottom: 13px;
 }
 
 /* Categories button (right) */
@@ -94,8 +97,15 @@
        <height>53</height>
       </size>
      </property>
-     <property name="text">
-      <string/>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/virtaus/images/resources/arrow_up.png</normaloff>:/virtaus/images/resources/arrow_up.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
     </widget>
    </item>
@@ -220,13 +230,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>categoriesButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SetsView</receiver>
+   <slot>show_categories()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>373</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
-  <signal>showInfo()</signal>
-  <signal>showProducts()</signal>
-  <signal>showCollections()</signal>
   <slot>show_info()</slot>
   <slot>show_products()</slot>
-  <slot>show_collections()</slot>
+  <slot>show_categories()</slot>
  </slots>
 </ui>
