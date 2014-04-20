@@ -34,6 +34,7 @@ protected slots:
     void show_preferences();
     void show_home();
     void show_view(Virtaus::View::Views view);
+    void save_settings();
 
 private:
     Ui::VirtausWindow *ui;

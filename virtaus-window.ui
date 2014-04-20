@@ -186,6 +186,9 @@
    <property name="text">
     <string>&amp;Preferences</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionCollections">
    <property name="text">
@@ -312,6 +315,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>VirtausWindow</sender>
+   <signal>destroyed()</signal>
+   <receiver>VirtausWindow</receiver>
+   <slot>save_settings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>show_about()</slot>
@@ -320,5 +339,6 @@
   <slot>show_home()</slot>
   <slot>show_about_qt()</slot>
   <slot>show_view(Virtaus::View::Views)</slot>
+  <slot>save_settings()</slot>
  </slots>
 </ui>

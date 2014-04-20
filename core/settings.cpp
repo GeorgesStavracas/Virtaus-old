@@ -7,8 +7,25 @@ Settings* Virtaus::Core::Settings::instance = NULL;
 Settings::Settings() : QObject()
 {
     QDir* dir = new QDir;
-    this->config_file = new QString(dir->currentPath()+"/config.ini");
-    this->settings = new QSettings(*this->config_file, QSettings::NativeFormat);
+    config_file = new QString(dir->absolutePath()+"/config.ini");
+    settings = new QSettings("The Virtaus project", "Virtaus", this);
+    settings->setPath(QSettings::NativeFormat, QSettings::UserScope, *config_file);
+
+    this->map = new QMap<QString, QVariant>;
+    map->insert("user-lang", "\"System\"");
+    map->insert("image-format", ".png");
+    map->insert("directory", QDir::homePath()+"/"+tr("My Collections"));
+    map->insert("user", "");
+    map->insert("email", "");
+    map->insert("use-opengl", false);
+}
+
+Settings::~Settings()
+{
+    foreach(QString key, map->keys())
+        settings->setValue(key, map->value(key));
+
+    delete settings;
 }
 
 void
@@ -17,8 +34,34 @@ Settings::setFile(QString &file)
     this->config_file->clear();
     this->config_file->append(file);
 
-    delete this->settings;
-    this->settings = new QSettings(*this->config_file, QSettings::NativeFormat);
+    delete settings;
+    settings = new QSettings("The Virtaus project", "Virtaus", this);
+    settings->setPath(QSettings::NativeFormat, QSettings::UserScope, file);
+
+    loadValues();
+}
+
+void
+Settings::loadValues()
+{
+    qDebug() << "Loading values...";
+
+    map->insert(QString("user-lang"), settings->value("user-lang", "\"System\""));
+    map->insert(QString("image-format"),settings->value("image-format", ".png"));
+    map->insert(QString("directory"),
+                    settings->value("directory", QDir::homePath()+"/"+tr("My Collections")));
+    map->insert(QString("user"), settings->value("user", ""));
+    map->insert(QString("email"), settings->value("email", ""));
+    map->insert(QString("use-opengl"), settings->value("use-opengl", false));
+
+}
+
+void
+Settings::saveValues()
+{
+    foreach(QString key, map->keys())
+        settings->setValue(key, map->value(key));
+
 }
 
 Settings*
@@ -29,3 +72,4 @@ Settings::getInstance()
 
     return instance;
 }
+

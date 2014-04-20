@@ -83,6 +83,12 @@ VirtausWindow::show_view(Virtaus::View::Views view)
 }
 
 void
+VirtausWindow::save_settings()
+{
+    qDebug() << this->size();
+}
+
+void
 VirtausWindow::show_home()
 {
     ui->mainStack->slideInIdx(0);

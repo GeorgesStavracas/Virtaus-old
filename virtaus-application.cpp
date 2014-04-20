@@ -25,9 +25,15 @@ VirtausApplication::VirtausApplication (int & argc, char ** argv) :
     this->monitor->addPath(QDir::homePath()+"/"+tr("My Collections"));
 
     QObject::connect(monitor, SIGNAL(directoryChanged(QString)), this, SLOT(fsUpdate(QString)));
+
+    QObject::connect(this, SIGNAL(aboutToQuit()), this, SLOT(safeQuit()));
 }
 
-
+void
+VirtausApplication::safeQuit()
+{
+    settings->saveValues();
+}
 
 void
 VirtausApplication::showGUI()
@@ -97,7 +103,32 @@ VirtausApplication::setCollection(Virtaus::Core::Collection *collection)
 {
     this->c_collection = collection;
 
-    emit this->collectionChanged(collection);
+    emit collectionChanged(collection);
+}
+
+
+void
+VirtausApplication::setCategory(Virtaus::Core::Category *category)
+{
+    this->c_category = category;
+
+    emit categoryChanged(category);
+}
+
+void
+VirtausApplication::setItem(Virtaus::Core::Item *item)
+{
+    this->c_item = item;
+
+    emit itemChanged(item);
+}
+
+void
+VirtausApplication::setSet(Virtaus::Core::Set *set)
+{
+    this->c_set = set;
+
+    emit setChanged(set);
 }
 
 void

@@ -23,26 +23,32 @@ public:
 
     void setFile(QString& file);
 
-    QString get(const QString& field, const QString& def)
+    void loadValues();
+    void saveValues();
+
+    QVariant get(const QString& field, const QVariant& def = "")
     {
-        return this->settings->value(field, def).toString();
+        if (def != "")
+            return settings->value(field, def);
+        else
+            return settings->value(field, map->value(field));
     }
 
-    void set(QString& field, QString& value)
+    void set(QString field, QVariant value)
     {
-        this->settings->setValue(field, value);
+        map->insert(field, value);
+        settings->setValue(field, value);
     }
 
 private:
     static Settings* instance;
-    QString* config_file;
-    QSettings* settings;
 
     Settings();
+    ~Settings();
 
-signals:
-
-public slots:
+    QString* config_file;
+    QSettings* settings;
+    QMap<QString, QVariant>* map;
 
 };
 

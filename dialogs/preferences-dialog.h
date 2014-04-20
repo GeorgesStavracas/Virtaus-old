@@ -2,6 +2,7 @@
 #define PREFERENCESDIALOG_H
 
 #include <QDialog>
+#include "virtaus-application.h"
 
 namespace Ui {
 class PreferencesDialog;
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::PreferencesDialog *ui;
+
+protected slots:
+    void save_settings(QAbstractButton* unused);
 };
 
 #endif // PREFERENCESDIALOG_H
