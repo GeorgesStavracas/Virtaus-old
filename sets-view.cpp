@@ -9,7 +9,7 @@ SetsView::SetsView(QWidget *parent) :
 
     VirtausApplication* app = VirtausApplication::getInstance();
 
-    QObject::connect(app, SIGNAL(collectionSelected(Virtaus::Core::Collection*)),
+    QObject::connect(app, SIGNAL(collectionChanged(Virtaus::Core::Collection*)),
                      this, SLOT(prepare_model(Virtaus::Core::Collection*)));
 }
 
@@ -18,30 +18,12 @@ SetsView::~SetsView()
     delete ui;
 }
 
-
-void
-SetsView::show_info()
-{
-    VirtausApplication* app = VirtausApplication::getInstance();
-
-    app->setView(Virtaus::View::COLLECTION_INFO_VIEW);
-}
-
 void
 SetsView::show_collections()
 {
     VirtausApplication* app = VirtausApplication::getInstance();
 
-    app->setView(Virtaus::View::COLLECTION_VIEW);
-    app->setCurrent(NULL);
-}
-
-void
-SetsView::show_categories()
-{
-    VirtausApplication* app = VirtausApplication::getInstance();
-
-    app->setView(Virtaus::View::CATEGORY_VIEW);
+    app->setView(Virtaus::View::COLLECTION_OPTIONS_VIEW);
 }
 
 void

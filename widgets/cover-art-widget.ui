@@ -13,6 +13,54 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#horizontalScrollBar:horizontal {
+    border: 0px none;
+	background: none;
+    background-color: rgba(0,0,0,0);
+    height: 10px;
+    margin: 0px 20px 0 20px;
+ }
+
+#horizontalScrollBar::handle:horizontal {
+	background-color: rgba(0,0,0,192);
+	min-width: 20px;
+	border: 1px solid black;
+	border-radius: 5px;
+ }
+
+#horizontalScrollBar::sub-page:horizontal {
+	background: none;
+	background-color: rgba(0,0,0,0);
+ }
+
+#horizontalScrollBar::add-page:horizontal {
+	background: none;
+	background-color: rgba(0,0,0,0);
+ }
+
+#horizontalScrollBar::sub-line:horizontal {
+     border: none;
+     background: black;
+     width: 0px;
+     subcontrol-position: left;
+     subcontrol-origin: margin;
+
+ }
+#horizontalScrollBar::add-line:horizontal {
+     border: none;
+     background: black;
+     width: 0px;
+     subcontrol-position: right;
+     subcontrol-origin: margin;
+ }
+
+#horizontalScrollBar:left-arrow:horizontal, 
+#horizontalScrollBar::right-arrow:horizontal {
+     width: 0px;
+     height: 0px;
+ }</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
     <number>0</number>

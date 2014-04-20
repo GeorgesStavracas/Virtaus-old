@@ -26,6 +26,12 @@
    <iconset resource="resources.qrc">
     <normaloff>:/virtaus/images/resources/icon.svg</normaloff>:/virtaus/images/resources/icon.svg</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">AnimatedStackedWidget {
+	color: rgb(238, 238, 238);
+	background-color: rgb(53, 53, 55);
+}</string>
+  </property>
   <property name="iconSize">
    <size>
     <width>64</width>
@@ -92,6 +98,25 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="setsPage">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="SetsView" name="setsView" native="true"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -129,14 +154,7 @@
     </property>
     <addaction name="actionPrefer_ncias"/>
    </widget>
-   <widget class="QMenu" name="menuView">
-    <property name="title">
-     <string>&amp;View</string>
-    </property>
-    <addaction name="actionCollections"/>
-   </widget>
    <addaction name="menuArquivo"/>
-   <addaction name="menuView"/>
    <addaction name="menuFerramentas"/>
    <addaction name="menuSobre"/>
   </widget>
@@ -203,6 +221,12 @@
    <header>collection-data-page.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>SetsView</class>
+   <extends>QWidget</extends>
+   <header>sets-view.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <resources>
   <include location="resources.qrc"/>
@@ -261,22 +285,6 @@
    <signal>triggered()</signal>
    <receiver>VirtausWindow</receiver>
    <slot>show_preferences()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionCollections</sender>
-   <signal>triggered()</signal>
-   <receiver>VirtausWindow</receiver>
-   <slot>show_home()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

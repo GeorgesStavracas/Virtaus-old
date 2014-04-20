@@ -17,9 +17,7 @@ public:
     ~SetsView();
 
 protected slots:
-    void show_info();
     void show_collections();
-    void show_categories();
     void prepare_model(Virtaus::Core::Collection* c);
 
 private:

@@ -47,7 +47,7 @@ DataWriter::saveItem(Virtaus::Core::Item* item)
             QDomElement itemElement = xml->createElement("draw");
 
 
-            QString format = QString::fromStdString(settings->get<std::string>(QString("image-extension")));
+            QString format = settings->get("image-extension", ".png");
 
 
             itemElement.setAttribute("name", item->getName());

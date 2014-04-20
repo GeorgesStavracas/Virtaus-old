@@ -18,5 +18,5 @@ CategoryView::sets_view()
 {
     VirtausApplication* app = VirtausApplication::getInstance();
 
-    app->setView(Virtaus::View::SET_VIEW);
+    app->setView(Virtaus::View::COLLECTION_OPTIONS_VIEW);
 }

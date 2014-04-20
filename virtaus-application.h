@@ -26,6 +26,8 @@ class VirtausApplication : public QApplication
 
     Q_OBJECT
 
+    Q_PROPERTY(Virtaus::Core::Collection* collection READ collection WRITE setCollection NOTIFY collectionChanged)
+
 public:
     static VirtausApplication* getInstance(int argc = 0, char ** argv = 0);
 
@@ -37,15 +39,15 @@ public:
 
     QList<Virtaus::Core::Collection*>* getData();
 
-    Virtaus::Core::Collection* getCurrent();
+    Virtaus::Core::Collection* collection() const {return c_collection;}
 
-    void setCurrent(Virtaus::Core::Collection* collection);
+    void setCollection(Virtaus::Core::Collection* collection);
     void setView(Virtaus::View::Views view);
     void setState(Virtaus::State::State state);
 
 
 signals:
-    void collectionSelected(Virtaus::Core::Collection* c);
+    void collectionChanged(Virtaus::Core::Collection* c);
     void view(Virtaus::View::Views view);
 
 protected slots:
@@ -61,7 +63,7 @@ protected:
     QFileSystemWatcher* monitor;
     Virtaus::View::Views current_view;
 
-    Virtaus::Core::Collection* current;
+    Virtaus::Core::Collection* c_collection;
 
     QList<Virtaus::Core::Collection*> *loaded_data;
 };

@@ -14,8 +14,8 @@
    id="svg2983"
    version="1.1"
    inkscape:version="0.48.4 r"
-   sodipodi:docname="arrow_left.svg"
-   inkscape:export-filename="C:\Users\Georges\Projetos\Virtaus\resources\arrow_left.png"
+   sodipodi:docname="arrow_down.svg"
+   inkscape:export-filename="C:\Users\Georges\Projetos\Virtaus\resources\arrow_down.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -57,7 +57,7 @@
      transform="translate(0,-988.36218)">
     <path
        style="fill:#ececec;fill-opacity:1;stroke:none"
-       d="m 3.999995,1024.3623 28,-28.00011 28.00001,28.00011 0,19.9999 -28.00001,-27.9999 -28,27.9999 z"
+       d="m 3.999995,1016.3621 28,28.0001 28.00001,-28.0001 0,-19.99991 -28.00001,27.99991 -28,-27.99991 z"
        id="path2985"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc" />

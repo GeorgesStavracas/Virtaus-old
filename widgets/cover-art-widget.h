@@ -34,7 +34,6 @@ signals:
     void indexChanged(int index);
     void indexRemove(int index);
 
-
 protected:
     void resizeEvent(QResizeEvent* event);
     void slideTo(int index);

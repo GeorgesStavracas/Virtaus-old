@@ -53,9 +53,9 @@ CollectionView::item_selected(QModelIndex index) {
 
     VirtausApplication* app = VirtausApplication::getInstance();
 
-    app->setCurrent(collection);
+    app->setCollection(collection);
 
-    app->setView(Virtaus::View::SET_VIEW);
+    app->setView(Virtaus::View::COLLECTION_OPTIONS_VIEW);
 
     //emit collectionSelected(collection);
 

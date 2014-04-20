@@ -7,10 +7,13 @@ CoverArtWidget::CoverArtWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->setMouseTracking(true);
+
     this->scene = new CoverArtScene();
-    scene->setBackgroundBrush(QBrush(QColor(53,53,55)));
-    scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
-    scene->setCurrentItem(0);
+    this->scene->setBackgroundBrush(QBrush(QColor(53,53,55)));
+    this->scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
+    this->scene->setCurrentItem(0);
+
     ui->graphicsView->setScene(scene);
 
     this->itemList = new QList<CoverArtItem*>;
@@ -319,7 +322,7 @@ CoverArtWidget::slideTo(int index)
 
     }
 
-    group->start();
+    group->start(QAbstractAnimation::DeleteWhenStopped);
 
     QObject::connect(group, SIGNAL(finished()), this, SLOT(animationFinished()));
 }

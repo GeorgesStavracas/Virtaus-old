@@ -64,11 +64,17 @@ VirtausWindow::show_view(Virtaus::View::Views view)
     switch (view)
     {
     case Virtaus::View::COLLECTION_VIEW:
+        ui->setsView->setVisible(false);
         ui->mainStack->slideInIdx(0);
         break;
 
-    case Virtaus::View::SET_VIEW:
+    case Virtaus::View::COLLECTION_OPTIONS_VIEW:
         ui->mainStack->slideInIdx(1);
+        break;
+
+    case Virtaus::View::SET_VIEW:
+        ui->setsView->setVisible(true);
+        ui->mainStack->slideInIdx(2);
         break;
 
     default:

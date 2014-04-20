@@ -12,8 +12,6 @@ CollectionDataPage::CollectionDataPage(QWidget *parent) :
     VirtausApplication* app = VirtausApplication::getInstance();
     QObject::connect(app, SIGNAL(view(Virtaus::View::Views)),
                      this, SLOT(set_view(Virtaus::View::Views)));
-    QObject::connect(app, SIGNAL(collectionSelected(Virtaus::Core::Collection*)),
-                     this, SLOT(prepare_model(Virtaus::Core::Collection*)));
 }
 
 CollectionDataPage::~CollectionDataPage()
@@ -26,7 +24,7 @@ void
 CollectionDataPage::set_view(Virtaus::View::Views view)
 {
     switch(view) {
-    case Virtaus::View::SET_VIEW:
+    case Virtaus::View::COLLECTION_OPTIONS_VIEW:
         ui->stack->slideInIdx(1);
         break;
 

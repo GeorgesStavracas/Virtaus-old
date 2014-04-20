@@ -39,7 +39,7 @@ CollectionInfoView::CollectionInfoView(QWidget *parent) :
 
     QObject::connect(app, SIGNAL(view(Virtaus::View::Views)), this, SLOT(view_focus(Virtaus::View::Views)));
 
-    QObject::connect(app, SIGNAL(collectionSelected(Virtaus::Core::Collection*)),
+    QObject::connect(app, SIGNAL(collectionChanged(Virtaus::Core::Collection*)),
                         this, SLOT(collection_selected(Virtaus::Core::Collection*)));
 }
 
@@ -59,7 +59,7 @@ CollectionInfoView::back()
 {
     VirtausApplication* app = VirtausApplication::getInstance();
 
-    app->setView(Virtaus::View::SET_VIEW);
+    app->setView(Virtaus::View::COLLECTION_OPTIONS_VIEW);
 }
 
 void

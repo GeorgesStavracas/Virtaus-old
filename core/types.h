@@ -44,7 +44,8 @@ namespace Virtaus
             CATEGORY_VIEW,
             DIAGRAM_VIEW,
             PRODUCT_VIEW,
-            ITEM_VIEW
+            ITEM_VIEW,
+            COLLECTION_OPTIONS_VIEW
         };
     }
 }

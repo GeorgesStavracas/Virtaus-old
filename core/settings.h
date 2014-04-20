@@ -23,13 +23,9 @@ public:
 
     void setFile(QString& file);
 
-    template<typename T> T get(QString field)
+    QString get(const QString& field, const QString& def)
     {
-        std::string value = this->settings->value(field, "").toString().toStdString();
-        std::stringstream ss(value);
-        T t;
-        ss >> t;
-        return t;
+        return this->settings->value(field, def).toString();
     }
 
     void set(QString& field, QString& value)

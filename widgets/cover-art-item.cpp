@@ -90,7 +90,7 @@ CoverArtItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         QPixmap pix = icon.pixmap(QSize(size().width(), size().height()));
         painter->drawPixmap(boundingRect(), pix, pix.rect());
 
-        int rect_height = ceil(size().height()/6);
+        qreal rect_height = size().height()/6;
 
 
         if (!c_last)
