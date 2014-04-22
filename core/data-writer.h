@@ -25,6 +25,7 @@ public:
     bool saveAttribute(Virtaus::Core::Attribute* attribute);
     bool saveCategory(Virtaus::Core::Category* category);
     bool saveCollection(Virtaus::Core::Collection* collection);
+    bool saveCollectionInfo(Virtaus::Core::Collection* collection);
     bool saveItem(Virtaus::Core::Item* item);
 
     /* Creation methods */

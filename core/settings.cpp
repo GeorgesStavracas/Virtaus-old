@@ -18,6 +18,9 @@ Settings::Settings() : QObject()
     map->insert("user", "");
     map->insert("email", "");
     map->insert("use-opengl", false);
+    map->insert("antialiasing", true);
+    map->insert("smooth-pixel-interpolation", true);
+    map->insert("disable-animation-effects", false);
 }
 
 Settings::~Settings()
@@ -44,16 +47,8 @@ Settings::setFile(QString &file)
 void
 Settings::loadValues()
 {
-    qDebug() << "Loading values...";
-
-    map->insert(QString("user-lang"), settings->value("user-lang", "\"System\""));
-    map->insert(QString("image-format"),settings->value("image-format", ".png"));
-    map->insert(QString("directory"),
-                    settings->value("directory", QDir::homePath()+"/"+tr("My Collections")));
-    map->insert(QString("user"), settings->value("user", ""));
-    map->insert(QString("email"), settings->value("email", ""));
-    map->insert(QString("use-opengl"), settings->value("use-opengl", false));
-
+    foreach (QString str, settings->allKeys())
+        map->insert(str, settings->value(str));
 }
 
 void
@@ -61,7 +56,6 @@ Settings::saveValues()
 {
     foreach(QString key, map->keys())
         settings->setValue(key, map->value(key));
-
 }
 
 Settings*

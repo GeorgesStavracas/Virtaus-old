@@ -7,6 +7,12 @@ CollectionInfoView::CollectionInfoView(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    timer = new QTimer(this);
+    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(save()));
+    timer->setInterval(10000);
+
+    last = Virtaus::View::COLLECTION_VIEW;
+
     /* Setup tab order */
     this->setTabOrder(ui->featuresEdit, ui->requirementEdit);
     this->setTabOrder(ui->requirementEdit, ui->materialsEdit);
@@ -18,8 +24,8 @@ CollectionInfoView::CollectionInfoView(QWidget *parent) :
     this->setTabOrder(ui->functionalEdit, ui->useEdit);
     this->setTabOrder(ui->useEdit, ui->feasibilityEdit);
 
-    this->setTabOrder(ui->feasibilityEdit, ui->genreCombo);
-    this->setTabOrder(ui->genreCombo, ui->physicalEdit);
+    this->setTabOrder(ui->feasibilityEdit, ui->genreEdit);
+    this->setTabOrder(ui->genreEdit, ui->physicalEdit);
     this->setTabOrder(ui->physicalEdit, ui->lifestyleEdit);
     this->setTabOrder(ui->lifestyleEdit, ui->productRequisitesEdit);
     this->setTabOrder(ui->productRequisitesEdit, ui->purchaseEdit);
@@ -43,12 +49,6 @@ CollectionInfoView::CollectionInfoView(QWidget *parent) :
                         this, SLOT(collection_selected(Virtaus::Core::Collection*)));
 }
 
-void
-CollectionInfoView::setApplication(VirtausApplication *app)
-{
-    this->app = app;
-}
-
 CollectionInfoView::~CollectionInfoView()
 {
     delete ui;
@@ -66,7 +66,19 @@ void
 CollectionInfoView::view_focus(Virtaus::View::Views view)
 {
     if (view == Virtaus::View::COLLECTION_INFO_VIEW)
+    {
         ui->featuresEdit->setFocus();
+        timer->start();
+    }
+
+    if (view == Virtaus::View::COLLECTION_OPTIONS_VIEW &&
+        last == Virtaus::View::COLLECTION_INFO_VIEW)
+    {
+        save();
+        timer->stop();
+    }
+
+    last = view;
 }
 
 void
@@ -75,5 +87,45 @@ CollectionInfoView::collection_selected(Virtaus::Core::Collection* c)
     if (!c)
         return;
 
+
     ui->featuresEdit->setPlainText(c->getInfo("product-features"));
+    ui->productRequisitesEdit->setPlainText(c->getInfo("product-requirement"));
+    ui->materialsEdit->setText(c->getInfo("product-materials"));
+    ui->finishingEdit->setText(c->getInfo("product-finishing"));
+    ui->manufacturingEdit->setText(c->getInfo("product-manufacturing-proccess"));
+    ui->suppliersEdit->setPlainText(c->getInfo("product-suppliers"));
+    ui->functionalEdit->setPlainText(c->getInfo("product-functional-config"));
+    ui->feasibilityEdit->setPlainText(c->getInfo("product-feasibility-analysis"));
+
+    ui->genreEdit->setText(c->getInfo("audience-genre"));
+    ui->physicalEdit->setPlainText(c->getInfo("audience-physical-features"));
+    ui->lifestyleEdit->setPlainText(c->getInfo("audience-lifestyle"));
+    ui->requirementEdit->setPlainText(c->getInfo("audience-requisites"));
+    ui->purchaseEdit->setText(c->getInfo("audience-purchasing-power"));
+    ui->desiresEdit->setPlainText(c->getInfo("audience-needs"));
+    ui->ageEdit->setText(c->getInfo("audience-age"));
+    ui->valuesEdit->setText(c->getInfo("audience-values"));
+    ui->activitiesEdit->setPlainText(c->getInfo("audience-activities"));
+    ui->attendingEdit->setPlainText(c->getInfo("audience-attending-places"));
+
+    ui->structureEdit->setPlainText(c->getInfo("competitors-structure"));
+    ui->productsEdit->setPlainText(c->getInfo("competitors-products"));
+    ui->qualitiesEdit->setPlainText(c->getInfo("competitors-qualities"));
+}
+
+void
+CollectionInfoView::save()
+{
+    /*
+    VirtausApplication* app = VirtausApplication::getInstance();
+
+    if (!app->collection())
+        return;
+
+    Virtaus::Core::DataWriter* writer;
+    writer = new Virtaus::Core::DataWriter;
+
+    writer->saveCollectionInfo(app->collection())
+    */
+    qDebug() << "Timer timeout";
 }

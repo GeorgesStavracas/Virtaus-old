@@ -9,6 +9,13 @@ SetsView::SetsView(QWidget *parent) :
 
     VirtausApplication* app = VirtausApplication::getInstance();
 
+    Virtaus::Core::Settings* settings;
+    settings = Virtaus::Core::Settings::getInstance();
+
+    ui->cover->setAntialiasing(settings->get("antialiasing").toBool());
+    ui->cover->setSmoothpixel(settings->get("smooth-pixel-interpolation").toBool());
+    ui->cover->setDisableEffectOnAnimation(settings->get("disable-animation-effects").toBool());
+
     QObject::connect(app, SIGNAL(collectionChanged(Virtaus::Core::Collection*)),
                      this, SLOT(prepare_model(Virtaus::Core::Collection*)));
 }

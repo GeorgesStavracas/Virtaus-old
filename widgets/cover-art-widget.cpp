@@ -21,6 +21,9 @@ CoverArtWidget::CoverArtWidget(QWidget *parent) :
     this->stack_move = 50;
     this->center_padding = 50;
 
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing, c_antialiasing);
+    ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform, c_smoothpixel);
+
     QObject::connect(scene, SIGNAL(itemSelected(int)), this, SLOT(selection_changed(int)));
 }
 
@@ -29,6 +32,12 @@ CoverArtWidget::~CoverArtWidget()
     delete ui;
 
     delete scene;
+}
+
+void
+CoverArtWidget::setRenderHint(QPainter::RenderHint r, bool value)
+{
+    ui->graphicsView->setRenderHint(r, value);
 }
 
 void
@@ -81,11 +90,13 @@ CoverArtWidget::place_widgets()
 {
     int current = scene->currentItem();
 
-
     ui->horizontalScrollBar->setValue(current);
 
-    ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform, false);
-    ui->graphicsView->setRenderHint(QPainter::Antialiasing, false);
+    if (!disableEffectOnAnimation())
+    {
+        ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform, false);
+        ui->graphicsView->setRenderHint(QPainter::Antialiasing, false);
+    }
 
     CoverArtItem* item;
     int item_size = scene->sceneRect().height() * 0.6;
@@ -330,6 +341,6 @@ CoverArtWidget::slideTo(int index)
 void
 CoverArtWidget::animationFinished()
 {
-    ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
-    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+    ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform, smoothpixel());
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing, antialiasing());
 }

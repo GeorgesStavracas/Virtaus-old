@@ -24,6 +24,9 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     ui->nameEdit->setText(settings->get("user").toString());
     ui->emailEdit->setText(settings->get("email").toString());
     ui->openglBox->setChecked(settings->get("use-opengl").toBool());
+    ui->antialiasingBox->setChecked(settings->get("antialiasing").toBool());
+    ui->smoothpixelCheck->setChecked(settings->get("smooth-pixel-interpolation").toBool());
+    ui->animationCheck->setChecked(settings->get("disable-animation-effects").toBool());
 }
 
 PreferencesDialog::~PreferencesDialog()
@@ -38,6 +41,9 @@ PreferencesDialog::save_settings(QAbstractButton* unused)
     settings = Virtaus::Core::Settings::getInstance();
 
     settings->set("use-opengl", ui->openglBox->isChecked());
+    settings->set("antialiasing", ui->antialiasingBox->isChecked());
+    settings->set("smooth-pixel-interpolation", ui->smoothpixelCheck->isChecked());
+    settings->set("disable-animation-effects", ui->animationCheck->isChecked());
     settings->set("directory", ui->dirEdit->text());
     settings->set("user", ui->nameEdit->text());
     settings->set("email", ui->emailEdit->text());

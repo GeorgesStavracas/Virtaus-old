@@ -156,3 +156,4 @@ DataWriter::createCollection(Collection *collection)
 
     return true;
 }
+

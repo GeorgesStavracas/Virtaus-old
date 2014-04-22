@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "virtaus-application.h"
+#include "core/data-writer.h"
 
 namespace Ui {
 class CollectionInfoView;
@@ -16,19 +17,19 @@ public:
     explicit CollectionInfoView(QWidget *parent = 0);
     ~CollectionInfoView();
 
-    void setApplication(VirtausApplication* app);
-
 protected slots:
     void back();
     void view_focus(Virtaus::View::Views view);
     void collection_selected(Virtaus::Core::Collection* c);
+    void save();
 
 signals:
     void goBack();
 
 private:
+    QTimer* timer;
     Ui::CollectionInfoView *ui;
-    VirtausApplication* app;
+    Virtaus::View::Views last;
 };
 
 #endif // COLLECTIONINFOVIEW_H

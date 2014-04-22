@@ -23,9 +23,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTabWidget" name="tabWidget">
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
      <widget class="QWidget" name="generalTab">
       <attribute name="title">
        <string>General</string>
@@ -224,6 +221,27 @@
         <widget class="QCheckBox" name="openglBox">
          <property name="text">
           <string>Use hardware-accelerated graphics' rendering (OpenGL)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QCheckBox" name="antialiasingBox">
+         <property name="text">
+          <string>Enable antialiasing (may cause performance issues)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QCheckBox" name="smoothpixelCheck">
+         <property name="text">
+          <string>Enable smooth pixel interpolation (may cause performance issues)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QCheckBox" name="animationCheck">
+         <property name="text">
+          <string>Disable effects when running animation</string>
          </property>
         </widget>
        </item>

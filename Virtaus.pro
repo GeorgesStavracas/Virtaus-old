@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     widgets/cover-art-scene.cpp \
     widgets/cover-art-item.cpp \
     category-view.cpp \
-    collection-options-view.cpp
+    collection-options-view.cpp \
+    widgets/category-rect-item.cpp
 
 HEADERS  += virtaus-window.h \
     collection-view.h \
@@ -55,7 +56,8 @@ HEADERS  += virtaus-window.h \
     widgets/cover-art-scene.h \
     widgets/cover-art-item.h \
     category-view.h \
-    collection-options-view.h
+    collection-options-view.h \
+    widgets/category-rect-item.h
 
 FORMS    += virtaus-window.ui \
     collection-view.ui \
